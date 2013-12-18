@@ -37,6 +37,10 @@ define(function(require) {
 
   });
 
+  Adapt.on('questionView:showFeedback', function(feedback) {
+    new TutorView({model:feedback});
+  });
+
   return TutorView;
 
 });
