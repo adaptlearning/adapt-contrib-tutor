@@ -32,7 +32,9 @@ define(function(require) {
 
     closeTutor: function (event) {
       if (event && event.preventDefault) event.preventDefault();
-      this.remove();
+      $(this.$el).fadeOut('fast', _.bind(function() {
+        this.remove();
+      }, this));
     }
 
   });
