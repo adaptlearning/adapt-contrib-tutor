@@ -18,7 +18,8 @@ define(function(require) {
     },
 
     events: {
-      'click .tutor-done':'closeTutor'
+      'click .tutor-done':'closeTutor',
+      'click .tutor-icon':'closeTutor'
     },
 
     render: function () {
@@ -42,7 +43,5 @@ define(function(require) {
   Adapt.on('questionView:showFeedback', function(feedback) {
     new TutorView({model:feedback});
   });
-
-  return TutorView;
 
 });
