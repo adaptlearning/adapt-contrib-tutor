@@ -9,7 +9,7 @@
   "main": "/js/adapt-contrib-tutor.js",
   "keywords": [
     "adapt-plugin",
-    "adapt-component"
+    "adapt-extension"
   ],
   "license": "GPLv3"
 }
