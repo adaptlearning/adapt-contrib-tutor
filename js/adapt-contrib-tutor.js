@@ -1,11 +1,12 @@
 /*
 * adapt-contrib-tutor
 * License - http://github.com/adaptlearning/adapt_framework/LICENSE
-* Maintainers - Kevin Corry <kevinc@learningpool.com>
+* Maintainers - Kevin Corry <kevinc@learningpool.com>, Daryl Hedley <darylhedley@hotmail.com>
 */
 define(function(require) {
 
   var Adapt = require('coreJS/adapt');
+  var Backbone = require('backbone');
 
   var TutorView = Backbone.View.extend({
 
@@ -41,7 +42,9 @@ define(function(require) {
   });
 
   Adapt.on('questionView:showFeedback', function(feedback) {
-    new TutorView({model:feedback});
+    new TutorView({
+      model: new Backbone.Model(feedback)
+    });
   });
 
 });
