@@ -30,13 +30,9 @@ define(function(require) {
       $('.tutor-inner').show();
       $('.tutor-shadow').fadeIn('fast');
       _.defer(function(view){
-        view.onShown();
+        Adapt.trigger('feedback:shown');
       }, this);
       return this;
-    },
-
-    onShown: function() {
-      Adapt.trigger('feedback:shown');
     },
 
     closeTutor: function (event) {
