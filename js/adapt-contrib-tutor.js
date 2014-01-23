@@ -29,14 +29,26 @@ define(function(require) {
       $(this.el).html(template(data)).appendTo('#wrapper');
       $('.tutor-inner').show();
       $('.tutor-shadow').fadeIn('fast');
+      _.defer(function(view){
+        view.onShown();
+      }, this);
       return this;
     },
 
+    onShown: function() {
+      Adapt.trigger('feedback:shown');
+    },
+
     closeTutor: function (event) {
-      if (event && event.preventDefault) event.preventDefault();
+      if (event && event.preventDefault) {
+        event.preventDefault();
+      }
+
       $(this.$el).fadeOut('fast', _.bind(function() {
         this.remove();
       }, this));
+
+      Adapt.trigger('feedback:closed');
     }
 
   });
