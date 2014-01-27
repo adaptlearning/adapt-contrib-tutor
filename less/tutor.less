@@ -4,6 +4,10 @@
     position: fixed;
     top: @navigation-height;
     width: 100%;
+    .ie8 & {
+      width: @ie8-max-width;
+      max-width: @ie8-max-width;
+    }
     background-color: @inverted-background-color;
     color: @inverted-foreground-color;
     z-index: 550;
