@@ -8,11 +8,13 @@
   </a>
 
   <div class="tutor-inner">
+    {{#if title}}
     <div class="tutor-title">
       <h6 class="tutor-title-inner">
         {{{title}}}
       </h6>
     </div>
+    {{/if}}
     <div class="tutor-body">
       <div class="tutor-body-inner">{{{message}}} {{#if score}}{{score}}{{/if}}</div>
     </div>
