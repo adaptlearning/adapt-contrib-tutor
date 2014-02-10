@@ -1,24 +1,26 @@
-{{! Maintainers - Kevin Corry}}
+{{! Maintainers - Kevin Corry, Daryl Hedley}}
 <div class="tutor">
-  <a href="#" class="tutor-icon icon icon-feedback"></a>
-  <div class="tutor-pin"></div>
-
-  <a href="#" class="tutor-done">
-    <div class="tutor-icon-close icon icon-cross"></div>
-  </a>
-
-  <div class="tutor-inner">
-    {{#if title}}
-    <div class="tutor-title">
-      <h6 class="tutor-title-inner">
-        {{{title}}}
-      </h6>
+    <div class="tutor-toolbar">
+        <a href="#" class="tutor-done">
+            <div class="tutor-icon-close icon icon-cross"></div>
+        </a>
     </div>
-    {{/if}}
-    <div class="tutor-body">
-      <div class="tutor-body-inner">{{{message}}} {{#if score}}{{score}}{{/if}}</div>
+    
+    <div class="tutor-content">
+        <div class="tutor-inner">
+                {{#if title}}
+                <div class="tutor-title">
+                    <h5 class="tutor-title-inner">
+                    {{{title}}}
+                    </h5>
+                </div>
+                {{/if}}
+            <div class="tutor-body">
+                <div class="tutor-body-inner">{{{message}}} {{#if score}}{{score}}{{/if}}</div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="tutor-shadow"></div>
