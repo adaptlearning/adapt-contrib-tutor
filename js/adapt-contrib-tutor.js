@@ -63,6 +63,7 @@ define(function(require) {
         this.remove();
         Adapt.trigger('tutor:closed');
       }, this));
+      Adapt.trigger('popup:closed');
     }
 
   });
@@ -71,6 +72,7 @@ define(function(require) {
     new TutorView({
       model: new Backbone.Model(feedback)
     });
+    Adapt.trigger('popup:opened');
   });
 
 });
