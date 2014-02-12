@@ -33,28 +33,28 @@ define(function(require) {
     },
 
     resetTutorSize: function() {
-      $('.tutor').removeAttr('style');
+      this.$('.tutor').removeAttr('style');
       this.resizeTutor(true);
     },
 
     resizeTutor: function(noAnimation) {
       var windowHeight = $(window).height();
-      var tutorHeight = $('.tutor').height();
+      var tutorHeight = this.$('.tutor').height();
       var animationSpeed = 400;
       if (tutorHeight > windowHeight) {
-        $('.tutor').css({'height':'100%', 'top':0, 'overflow-y': 'scroll'})
+        this.$('.tutor').css({'height':'100%', 'top':0, 'overflow-y': 'scroll'})
       } else {
         if (noAnimation) {
           var animationSpeed = 0;
         }
-        $('.tutor').css({'margin-top': -(tutorHeight/2)-50, 'opacity': 0}).animate({'margin-top': -(tutorHeight/2), 'opacity':1}, animationSpeed);
+        this.$('.tutor').css({'margin-top': -(tutorHeight/2)-50, 'opacity': 0}).animate({'margin-top': -(tutorHeight/2), 'opacity':1}, animationSpeed);
       }
     },
 
     showTutor: function() {
       this.resizeTutor();
-      $('.tutor').show();
-      $('.tutor-shadow').fadeIn('fast');
+      this.$('.tutor').show();
+      this.$('.tutor-shadow').fadeIn('fast');
     },
 
     closeTutor: function (event) {
