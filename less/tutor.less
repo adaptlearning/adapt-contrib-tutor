@@ -4,22 +4,24 @@
     position: fixed;
     top: 50%;
     width:100%;
-    /*visibility: hidden;*/
-    .ie8 & {
-      max-width: @ie8-max-width;
-    }
     background-color: @inverted-background-color;
     color: @inverted-foreground-color;
     z-index: 550;
-
-     a {
+    .ie8 & {
+      left:0px;
+    }
+    a {
       outline: none;
       text-decoration: none;
     }
   }
 
   .tutor-content {
-    .media-sizing;
+    .responsive-layout
+    .ie8 & {
+      max-width: @ie8-max-width;
+      margin:0 auto;
+    }
   }
 
   .tutor-inner {
