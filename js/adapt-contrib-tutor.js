@@ -28,7 +28,9 @@ define(function(require) {
       var data = this.model.toJSON();
       var template = Handlebars.templates["tutor"];
       this.$el.html(template(data)).appendTo('#wrapper');
-      this.showTutor();
+      _.defer(_.bind(function() {
+        this.showTutor();
+      }, this));
       return this;
     },
 
@@ -52,8 +54,8 @@ define(function(require) {
     },
 
     showTutor: function() {
-      this.resizeTutor();
       this.$('.tutor').show();
+      this.resizeTutor();
       this.$('.tutor-shadow').fadeIn('fast');
     },
 
