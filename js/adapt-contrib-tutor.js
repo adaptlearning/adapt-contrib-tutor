@@ -44,7 +44,12 @@ define(function(require) {
       var tutorHeight = this.$('.tutor').height();
       var animationSpeed = 400;
       if (tutorHeight > windowHeight) {
-        this.$('.tutor').css({'height':'100%', 'top':0, 'overflow-y': 'scroll'})
+        this.$('.tutor').css({
+          'height':'100%', 
+          'top':0, 
+          'overflow-y': 'scroll', 
+          '-webkit-overflow-scrolling': 'touch'
+        });
       } else {
         if (noAnimation) {
           var animationSpeed = 0;
@@ -54,9 +59,10 @@ define(function(require) {
     },
 
     showTutor: function() {
-      this.$('.tutor').show();
       this.resizeTutor();
-      this.$('.tutor-shadow').fadeIn('fast');
+      this.$('.tutor').show();
+      this.$('.tutor-shadow').fadeIn('slow');
+      
     },
 
     closeTutor: function (event) {
