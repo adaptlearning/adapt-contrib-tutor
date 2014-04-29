@@ -28,7 +28,9 @@ define(function(require) {
       var data = this.model.toJSON();
       var template = Handlebars.templates["tutor"];
       this.$el.html(template(data)).appendTo('#wrapper');
-      this.showTutor();
+      _.defer(_.bind(function() {
+        this.showTutor();
+      }, this));
       return this;
     },
 
@@ -42,7 +44,12 @@ define(function(require) {
       var tutorHeight = this.$('.tutor').height();
       var animationSpeed = 400;
       if (tutorHeight > windowHeight) {
-        this.$('.tutor').css({'height':'100%', 'top':0, 'overflow-y': 'scroll'})
+        this.$('.tutor').css({
+          'height':'100%', 
+          'top':0, 
+          'overflow-y': 'scroll', 
+          '-webkit-overflow-scrolling': 'touch'
+        });
       } else {
         if (noAnimation) {
           var animationSpeed = 0;
@@ -54,7 +61,8 @@ define(function(require) {
     showTutor: function() {
       this.resizeTutor();
       this.$('.tutor').show();
-      this.$('.tutor-shadow').fadeIn('fast');
+      this.$('.tutor-shadow').fadeIn('slow');
+      
     },
 
     closeTutor: function (event) {
