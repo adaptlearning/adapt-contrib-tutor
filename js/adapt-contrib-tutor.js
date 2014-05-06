@@ -30,6 +30,7 @@ define(function(require) {
       this.$el.html(template(data)).appendTo('#wrapper');
       _.defer(_.bind(function() {
         this.showTutor();
+        this.$('.tutor').css({opacity: 0});
       }, this));
       return this;
     },
@@ -49,7 +50,7 @@ define(function(require) {
           'top':0, 
           'overflow-y': 'scroll', 
           '-webkit-overflow-scrolling': 'touch'
-        });
+        }).animate({opacity:1});
       } else {
         if (noAnimation) {
           var animationSpeed = 0;
