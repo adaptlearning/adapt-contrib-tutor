@@ -15,7 +15,6 @@ define(function(require) {
     initialize: function () {
       this.render();
       this.listenTo(Adapt, 'remove', this.closeTutor, this);
-      this.listenTo(Adapt, 'close', this.closeTutor, this);
       this.listenTo(Adapt, 'device:resize', this.resetTutorSize);
     },
 
@@ -77,9 +76,9 @@ define(function(require) {
 
   });
 
-  Adapt.on('questionView:showFeedback', function(feedback) {
+  Adapt.on('questionView:showFeedback', function(view) {
     new TutorView({
-      model: new Backbone.Model(feedback)
+      model: view.model
     });
     Adapt.trigger('popup:opened');
   });
