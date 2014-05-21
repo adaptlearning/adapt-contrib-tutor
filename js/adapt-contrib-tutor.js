@@ -29,7 +29,7 @@ define(function(require) {
       this.$el.html(template(data)).appendTo('#wrapper');
       _.defer(_.bind(function() {
         this.showTutor();
-        this.$('.tutor').css({opacity: 0});
+        this.$('.tutor').css({display: 'block', opacity: 0});
       }, this));
       return this;
     },
