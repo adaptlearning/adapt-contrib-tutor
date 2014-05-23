@@ -49,12 +49,16 @@ define(function(require) {
           'top':0, 
           'overflow-y': 'scroll', 
           '-webkit-overflow-scrolling': 'touch'
-        }).animate({opacity:1});
+        });
       } else {
         if (noAnimation) {
           var animationSpeed = 0;
         }
-        this.$('.tutor').css({'margin-top': -(tutorHeight/2)-50, 'opacity': 0}).animate({'margin-top': -(tutorHeight/2), 'opacity':1}, animationSpeed);
+        this.$('.tutor').css({
+          'margin-top': -(tutorHeight/2)-50, 'opacity': 0
+        }).velocity({
+          'margin-top': -(tutorHeight/2), 'opacity':1
+        }, animationSpeed);
       }
     },
 
