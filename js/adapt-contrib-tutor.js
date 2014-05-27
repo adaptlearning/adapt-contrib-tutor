@@ -27,9 +27,9 @@ define(function(require) {
       var data = this.model.toJSON();
       var template = Handlebars.templates["tutor"];
       this.$el.html(template(data)).appendTo('#wrapper');
+      this.$('.tutor').css({display: 'block', opacity: 0});
       _.defer(_.bind(function() {
         this.showTutor();
-        this.$('.tutor').css({display: 'block', opacity: 0});
       }, this));
       return this;
     },
@@ -48,7 +48,8 @@ define(function(require) {
           'height':'100%', 
           'top':0, 
           'overflow-y': 'scroll', 
-          '-webkit-overflow-scrolling': 'touch'
+          '-webkit-overflow-scrolling': 'touch',
+          'opacity':1
         });
       } else {
         if (noAnimation) {
