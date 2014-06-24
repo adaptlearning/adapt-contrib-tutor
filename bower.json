@@ -5,6 +5,8 @@
   "authors": [
     "Kevin Corry <kevinc@learningpool.com>"
   ],
+  "displayName" : "Tutor",
+  "extension" : "tutor",
   "description": "A basic feedback overlay for question components",
   "main": "/js/adapt-contrib-tutor.js",
   "keywords": [
