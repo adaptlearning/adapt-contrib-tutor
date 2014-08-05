@@ -4,8 +4,8 @@
         position: fixed;
         top: 50%;
         width:100%;
-        background-color: @inverted-background-color;
-        color: @inverted-foreground-color;
+        background-color: @notify-color;
+        color: @notify-text-color;
         z-index: 550;
         .ie8 & {
             left:0px;
@@ -25,8 +25,8 @@
     }
 
     .tutor-inner {
-        padding: @item-padding;
-        padding-bottom: (@navigation-padding*2);
+        padding: @notify-popup-padding;
+        padding-top: 0px;
     }
 
     .tutor-toolbar {
@@ -34,13 +34,15 @@
     }
 
     .tutor-done {
-        padding-top:@navigation-padding;
-        padding-right:@navigation-padding;
+        padding:@navigation-padding;
         display:inline-block;
     }
 
     .tutor-icon-close {
-        color: @inverted-foreground-color;
+        color: @notify-icon-color;
+        .no-touch &:hover {
+            color:@notify-icon-hover-color;
+        }
     }
 
     .tutor-shadow {
@@ -56,22 +58,5 @@
         }
         background-color: @transparency;
         
-    }
-}
-
-.no-touch {
-    .extension-tutor {
-        .tutor {
-            .tutor-icon-close {
-                &:hover{
-                    color: @item-hover-color;
-                }
-            }
-            .tutor-icon {
-                &:hover{
-                    color: @item-hover-color;
-                }
-            }
-        }
     }
 }
