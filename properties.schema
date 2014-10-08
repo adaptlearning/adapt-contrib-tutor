@@ -17,7 +17,8 @@
               "properties": {
                 "_isEnabled": {
                   "type":"boolean",
-                  "required":true
+                  "required":true,
+                  "title": "Enabled"
                 }
               }
             }
