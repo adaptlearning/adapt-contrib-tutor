@@ -9,6 +9,10 @@
         z-index: 550;
         .ie8 & {
             left:0px;
+		    .dir-rtl & {
+		        left: inherit;
+		        right: 0px;
+		    }
         }
         a {
             outline: none;
@@ -31,6 +35,9 @@
 
     .tutor-toolbar {
         text-align:right;
+        .dir-rtl & {
+            text-align:left;
+        }
     }
 
     .tutor-done {
@@ -50,6 +57,10 @@
         position: fixed;
         top: 0px;
         left: 0px;
+        .dir-rtl & {
+            left: inherit;
+            right: 0px;
+        }
         width: 100%;
         height: 100%;
         z-index: 549;
