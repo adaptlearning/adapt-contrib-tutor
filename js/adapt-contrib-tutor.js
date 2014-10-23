@@ -64,6 +64,7 @@ define(function(require) {
     },
 
     showTutor: function() {
+      $('.tutor-done').focus();
       this.resizeTutor();
       this.$('.tutor').show();
       this.$('.tutor-shadow').fadeIn('slow');
@@ -82,10 +83,10 @@ define(function(require) {
   });
 
   Adapt.on('questionView:showFeedback', function(view) {
+    Adapt.trigger('popup:opened');
     new TutorView({
       model: view.model
     });
-    Adapt.trigger('popup:opened');
   });
 
 });
