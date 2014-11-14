@@ -18,7 +18,10 @@
                 "_isEnabled": {
                   "type":"boolean",
                   "required":true,
-                  "title": "Enabled"
+                  "title":"Is Enabled",
+                  "inputType": {"type": "Boolean", "options": [true, false]},
+                  "validators": [],
+                  "help": "If set to 'true', this course will use Tutor as the default feedback popup"
                 }
               }
             }
