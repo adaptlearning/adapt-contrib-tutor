@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "homepage": "https://github.com/adaptlearning/adapt-contrib-tutor",
   "authors": [
-    "Kevin Corry <kevinc@learningpool.com>"
+    "Kevin Corry <kevinc@learningpool.com>",
+    "Daryl Hedley <darylhedley@hotmail.com>",
+    "Himanshu Rajotia <himanshu.rajotia@exultcorp.com>"
   ],
   "displayName" : "Tutor",
   "extension" : "tutor",
