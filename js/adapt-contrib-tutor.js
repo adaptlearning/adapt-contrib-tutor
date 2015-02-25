@@ -101,7 +101,7 @@ define(function(require) {
     });
 
     Adapt.on('questionView:showFeedback', function(view) {
-        Adapt.trigger('popup:opened');
+        Adapt.trigger('popup:opened', this.$el);
         new TutorView({
             model: view.model
         });
