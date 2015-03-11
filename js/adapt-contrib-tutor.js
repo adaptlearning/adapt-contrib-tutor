@@ -72,10 +72,11 @@ define(function(require) {
         },
 
         showTutor: function() {
-            $('.tutor-done').focus();
             this.resizeTutor();
             this.$('.tutor').show();
-            this.$('.tutor-shadow').fadeIn('slow');
+            this.$('.tutor-shadow').fadeIn('slow', _.bind(function() {
+                this.$el.a11y_focus();
+            }, this));
         },
 
         closeTutor: function() {
@@ -101,10 +102,13 @@ define(function(require) {
     });
 
     Adapt.on('questionView:showFeedback', function(view) {
-        Adapt.trigger('popup:opened');
-        new TutorView({
+
+        var tutor = new TutorView({
             model: view.model
         });
+
+        Adapt.trigger('popup:opened', tutor.$el);
+
     });
 
 });
