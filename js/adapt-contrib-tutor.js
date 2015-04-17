@@ -75,7 +75,7 @@ define(function(require) {
             this.resizeTutor();
             this.$('.tutor').show();
             this.$('.tutor-shadow').fadeIn('slow', _.bind(function() {
-                this.$el.a11y_focus();
+                this.$('tutor').a11y_focus();
             }, this));
         },
 
@@ -107,7 +107,7 @@ define(function(require) {
             model: view.model
         });
 
-        Adapt.trigger('popup:opened', tutor.$el);
+        Adapt.trigger('popup:opened', tutor.$('tutor'));
 
     });
 
