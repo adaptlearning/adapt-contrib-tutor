@@ -20,6 +20,8 @@ define([
         });
 
         Adapt.trigger('notify:popup', alertObject);
+        
+        Adapt.trigger('tutor:opened');
     });
 
 });
