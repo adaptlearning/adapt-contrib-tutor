@@ -1,9 +1,3 @@
-/*
- * adapt-contrib-tutor
- * License - http://github.com/adaptlearning/adapt_framework/blob/master/LICENSE
- * Maintainers - Kevin Corry <kevinc@learningpool.com>, Daryl Hedley <darylhedley@hotmail.com>,
- *               Himanshu Rajotia <himanshu.rajotia@exultcorp.com>
- */
 define([
     'coreJS/adapt'
 ],function(Adapt) {
