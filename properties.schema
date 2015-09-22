@@ -12,13 +12,21 @@
           "type":"object",
           "properties":{
             "_tutor": {
+              "legend" : "Tutor",
               "type":"object",
               "required":false,
               "properties": {
                 "_isEnabled": {
                   "type":"boolean",
                   "required":true,
-                  "title": "Enabled"
+                  "title": "Enabled",
+                  "inputType" : {
+                      "type" : "Boolean",
+                      "options" : [ 
+                        true, 
+                        false
+                      ]
+                    }
                 }
               }
             }
