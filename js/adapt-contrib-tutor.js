@@ -16,7 +16,7 @@ define([
             } else {
                 if (view.model.has('_isAtLeastOneCorrectSelection')) {
                     // Partially correct feedback is an option.
-                    alertObject._classes = view.model.has('_isAtLeastOneCorrectSelection')
+                    alertObject._classes = view.model.get('_isAtLeastOneCorrectSelection')
                         ? 'partially-correct'
                         : 'incorrect';
                 } else {
