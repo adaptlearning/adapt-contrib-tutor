@@ -10,7 +10,19 @@ define([
         };
 
         if (view.model.has('_isCorrect')) {
-            alertObject._classes = view.model.get('_isCorrect') ? 'correct' : 'incorrect';
+            // Attach specific classes so that feedback can be styled.
+            if (view.model.get('_isCorrect')) {
+                alertObject._classes = 'correct';
+            } else {
+                if (view.model.has('_isAtLeastOneCorrectSelection')) {
+                    // Partially correct feedback is an option.
+                    alertObject._classes = view.model.get('_isAtLeastOneCorrectSelection')
+                        ? 'partially-correct'
+                        : 'incorrect';
+                } else {
+                    alertObject._classes = 'incorrect';
+                }
+            }
         }
 
         Adapt.once("notify:closed", function() {
@@ -18,7 +30,7 @@ define([
         });
 
         Adapt.trigger('notify:popup', alertObject);
-        
+
         Adapt.trigger('tutor:opened');
     });
 
