@@ -26,12 +26,12 @@ define([
         }
 
         Adapt.once("notify:closed", function() {
-            Adapt.trigger("tutor:closed");
+            Adapt.trigger("tutor:closed", view, alertObject);
         });
 
         Adapt.trigger('notify:popup', alertObject);
 
-        Adapt.trigger('tutor:opened');
+        Adapt.trigger('tutor:opened', view, alertObject);
     });
 
 });
