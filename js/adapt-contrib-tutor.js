@@ -9,21 +9,37 @@ define([
             body: view.model.get("feedbackMessage")
         };
 
+        var classes = [];
+
         if (view.model.has('_isCorrect')) {
             // Attach specific classes so that feedback can be styled.
             if (view.model.get('_isCorrect')) {
-                alertObject._classes = 'correct';
+                classes.push('correct');
             } else {
                 if (view.model.has('_isAtLeastOneCorrectSelection')) {
                     // Partially correct feedback is an option.
-                    alertObject._classes = view.model.get('_isAtLeastOneCorrectSelection')
-                        ? 'partially-correct'
-                        : 'incorrect';
+                    if (view.model.get('_isAtLeastOneCorrectSelection')) {
+                        classes.push('partially-correct');
+                    } else {
+                        classes.push('incorrect');
+                    }
                 } else {
-                    alertObject._classes = 'incorrect';
+                    classes.push('incorrect');
                 }
             }
         }
+
+        // Add the extension/component type which triggered this.
+        if (view.model.has('_component')) {
+            classes.push('component-' + view.model.get('_component'));
+        } else if (view.model.has('_extension')) {
+            classes.push('extension-' + view.model.get('_extension'));
+        }
+
+        // Add the _id property as a class.
+        classes.push(view.model.get('_id'));
+
+        alertObject._classes = classes.join(' ');
 
         Adapt.once("notify:closed", function() {
             Adapt.trigger("tutor:closed", view, alertObject);
