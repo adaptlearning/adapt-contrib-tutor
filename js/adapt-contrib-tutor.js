@@ -9,6 +9,7 @@ define([
             body: view.model.get("feedbackMessage")
         };
 
+        var attributes = {};
         var classes = [];
 
         if (view.model.has('_isCorrect')) {
@@ -36,10 +37,11 @@ define([
             classes.push('extension-' + view.model.get('_extension'));
         }
 
-        // Add the _id property as a class.
-        classes.push(view.model.get('_id'));
+        // Add the _id property as attribute.
+        attributes['data-adapt-id'] = view.model.get('_id');
 
         alertObject._classes = classes.join(' ');
+        alertObject._attributes = attributes;
 
         Adapt.once("notify:closed", function() {
             Adapt.trigger("tutor:closed", view, alertObject);
