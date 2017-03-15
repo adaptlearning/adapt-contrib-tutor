@@ -1,17 +1,17 @@
 define([
-	'core/js/adapt'
+    'core/js/adapt'
 ], function(Adapt) {
 
-	var TutorNotify = Backbone.Controller.extend({
+    var TutorNotify = Backbone.Controller.extend({
 
-		initialize: function(options) {
+        initialize: function(options) {
 
             this.parentView = options.parentView;
 
             this.listenToOnce(Adapt, "notify:closed", this.onNotifyClosed);
             this.triggerNotify();
 
-		},
+        },
 
         triggerNotify: function() {
             
@@ -47,9 +47,9 @@ define([
         }
 
 
-	});
+    });
 
-	return TutorNotify;
+    return TutorNotify;
 
 
 });

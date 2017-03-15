@@ -93,7 +93,7 @@ define([
             e.preventDefault();
             e.stopPropagation();
             
-            this.animateOut(); 
+            this.animateOut();
         
         },
 
