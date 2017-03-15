@@ -1,55 +1,113 @@
 define([
-    'coreJS/adapt'
-],function(Adapt) {
+    'core/js/adapt',
+    './tutorNotify',
+    './tutorOverlay',
+    './tutorInline',
+    './tutorTypeEnum'
+],function(Adapt, tutorNotify, tutorOverlay, tutorInline, TUTOR_TYPE) {
 
-    Adapt.on('questionView:showFeedback', function(view) {
+    var Tutor = Backbone.Controller.extend({
 
-        var alertObject = {
-            title: view.model.get("feedbackTitle"),
-            body: view.model.get("feedbackMessage")
-        };
+        types: TUTOR_TYPE,
 
-        var attributes = {};
-        var classes = [];
+        initialize: function(options) {
 
-        if (view.model.has('_isCorrect')) {
-            // Attach specific classes so that feedback can be styled.
-            if (view.model.get('_isCorrect')) {
-                classes.push('correct');
-            } else {
-                if (view.model.has('_isAtLeastOneCorrectSelection')) {
-                    // Partially correct feedback is an option.
-                    if (view.model.get('_isAtLeastOneCorrectSelection')) {
-                        classes.push('partially-correct');
+            this.listenTo(Adapt, 'questionView:showFeedback', this.onQuestionViewShowFeedback);
+
+        },
+
+        onQuestionViewShowFeedback: function(view) {
+
+            var feedbackObject = this.getModelFeedback(view.model);
+            view.model.set("_currentFeedback", feedbackObject);
+
+            this.triggerFeedback(feedbackObject, view)
+
+        },
+
+        triggerFeedback: function(feedbackObject, view) {
+
+            var triggerHandler;
+            switch (feedbackObject._type) {
+                case TUTOR_TYPE.NONE: {
+                    return;
+                } case TUTOR_TYPE.NOTIFY: {
+                    triggerHandler = tutorNotify;
+                    break;
+                } case TUTOR_TYPE.OVERLAY: {
+                    triggerHandler = tutorOverlay;
+                    break;
+                } case TUTOR_TYPE.INLINE: {
+                    triggerHandler = tutorInline;
+                    break;
+                }
+            }
+
+            if (!triggerHandler) return;
+
+            new triggerHandler({
+                model: view.model,
+                parentView: view
+            });
+
+        },
+
+        getModelFeedback: function(model) {
+
+            var type = TUTOR_TYPE.INLINE;
+            var feedback = model.get("_feedback");           
+            if (feedback && feedback._type) {
+                type = TUTOR_TYPE(feedback._type.toUpperCase());
+            }
+
+            var feedbackObject = {
+                title: model.get("feedbackTitle"),
+                body: model.get("feedbackMessage"),
+                _type: type
+            };
+
+            var attributes = {};
+            var classes = [];
+
+            if (model.has('_isCorrect')) {
+                // Attach specific classes so that feedback can be styled.
+                if (model.get('_isCorrect')) {
+                    classes.push('correct');
+                } else {
+                    if (model.has('_isAtLeastOneCorrectSelection')) {
+                        // Partially correct feedback is an option.
+                        if (model.get('_isAtLeastOneCorrectSelection')) {
+                            classes.push('partially-correct');
+                        } else {
+                            classes.push('incorrect');
+                        }
                     } else {
                         classes.push('incorrect');
                     }
-                } else {
-                    classes.push('incorrect');
                 }
             }
+
+            // Add the extension/component type which triggered this.
+            if (model.has('_component')) {
+                classes.push('component-' + model.get('_component'));
+            } else if (model.has('_extension')) {
+                classes.push('extension-' + model.get('_extension'));
+            }
+
+            // Add the _id property as attribute.
+            attributes['data-adapt-id'] = model.get('_id');
+
+            feedbackObject._classes = classes.join(' ');
+            feedbackObject._attributes = attributes;
+
+            return feedbackObject;
+
         }
 
-        // Add the extension/component type which triggered this.
-        if (view.model.has('_component')) {
-            classes.push('component-' + view.model.get('_component'));
-        } else if (view.model.has('_extension')) {
-            classes.push('extension-' + view.model.get('_extension'));
-        }
-
-        // Add the _id property as attribute.
-        attributes['data-adapt-id'] = view.model.get('_id');
-
-        alertObject._classes = classes.join(' ');
-        alertObject._attributes = attributes;
-
-        Adapt.once("notify:closed", function() {
-            Adapt.trigger("tutor:closed", view, alertObject);
-        });
-
-        Adapt.trigger('notify:popup', alertObject);
-
-        Adapt.trigger('tutor:opened', view, alertObject);
     });
+
+    Adapt.tutor = new Tutor();
+
+    return Adapt.tutor;
 
 });
