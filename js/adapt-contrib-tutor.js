@@ -54,7 +54,7 @@ define([
 
         getModelFeedback: function(model) {
 
-            var type = TUTOR_TYPE.INLINE;
+            var type = TUTOR_TYPE.NOTIFY;
             var feedback = model.get("_feedback");           
             if (feedback && feedback._type) {
                 type = TUTOR_TYPE(feedback._type.toUpperCase());
