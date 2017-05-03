@@ -1,24 +1,24 @@
 {
-  "type":"object",
+  "type": "object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
-  "required":false,
-  "properties":{
+  "required": false,
+  "properties": {
     "pluginLocations": {
-      "type":"object",
-      "required":true,
-      "properties":{
+      "type": "object",
+      "required": true,
+      "properties": {
         "config": {
-          "type":"object",
-          "properties":{
+          "type": "object",
+          "properties": {
             "_tutor": {
               "legend" : "Tutor",
-              "type":"object",
-              "required":false,
+              "type": "object",
+              "required": false,
               "properties": {
                 "_isEnabled": {
-                  "type":"boolean",
-                  "required":true,
+                  "type": "boolean",
+                  "required": true,
                   "title": "Enabled",
                   "inputType": "Checkbox"
                 }
@@ -27,19 +27,19 @@
           }
         },
         "course": {
-          "type":"object"
+          "type": "object"
         },
         "contentobject": {
-          "type":"object"
+          "type": "object"
         },
         "article": {
-          "type":"object"
+          "type": "object"
         },
         "block": {
-          "type":"object"
+          "type": "object"
         },
         "component": {
-          "type":"object"
+          "type": "object"
         }
       }
     }
