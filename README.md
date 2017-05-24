@@ -3,7 +3,7 @@
 **Tutor** is an *extension* bundled with the [Adapt framework] (https://github.com/adaptlearning/adapt_framework).  
 It provides core [*question components*](https://github.com/adaptlearning/adapt_framework/wiki/Core-Plug-ins-in-the-Adapt-Learning-Framework#question-components) with the ability to display feedback in a modal overlay. Feedback is configured in the individual *question components*, not in **Tutor**.
 
-##Installation
+## Installation
 
 As one of Adapt's *[core extensions](https://github.com/adaptlearning/adapt_framework/wiki/Core-Plug-ins-in-the-Adapt-Learning-Framework#extensions),* **Tutor** is included with the [installation of the Adapt framework](https://github.com/adaptlearning/adapt_framework/wiki/Manual-installation-of-the-Adapt-framework#installation) and the [installation of the Adapt authoring tool](https://github.com/adaptlearning/adapt_authoring/wiki/Installing-Adapt-Origin).
 
@@ -19,7 +19,7 @@ With the [Adapt CLI](https://github.com/adaptlearning/adapt-cli) installed, run 
 
 * If **Tutor** has been uninstalled from the Adapt authoring tool, it may be reinstalled using the [Plug-in Manager](https://github.com/adaptlearning/adapt_authoring/wiki/Plugin-Manager).  
 
-##Settings  
+## Settings  
 
 **Tutor** has no attributes to configure.  
 
