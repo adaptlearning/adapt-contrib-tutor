@@ -1,6 +1,6 @@
 # adapt-contrib-tutor  
     
-**Tutor** is an *extension* bundled with the [Adapt framework] (https://github.com/adaptlearning/adapt_framework).  
+**Tutor** is an *extension* bundled with the [Adapt framework](https://github.com/adaptlearning/adapt_framework).  
 It provides core [*question components*](https://github.com/adaptlearning/adapt_framework/wiki/Core-Plug-ins-in-the-Adapt-Learning-Framework#question-components) with the ability to display feedback in a modal overlay. Feedback is configured in the individual *question components*, not in **Tutor**.
 
 ## Installation
@@ -28,8 +28,8 @@ With the [Adapt CLI](https://github.com/adaptlearning/adapt-cli) installed, run 
 No known limitations.  
 
 ----------------------------
-**Version number:**  2.1.0   <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a> 
-**Framework versions:**  2.0.18     
+**Version number:**  2.1.1   <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a> 
+**Framework versions:**  2.0.18+     
 **Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-tutor/graphs/contributors)    
 **Accessibility support:** WAI AA   
 **RTL support:** yes  
