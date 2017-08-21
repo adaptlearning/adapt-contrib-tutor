@@ -2,11 +2,37 @@ define([
     'coreJS/adapt'
 ],function(Adapt) {
 
-    Adapt.on('questionView:showFeedback', function(view) {
+      /**
+       * The screen width can fall into one of three categories: large, medium
+       * or small. There is a large and a small image. If the screen width is
+       * medium get the small image src otherwise get the src corresponding to
+       * the screen width.
+       * @param image
+       * @param width
+       * @returns {*}
+       */
+      function getImageSrc (image, width) {
+          var imageWidth;
+          if (width === 'medium') {
+            imageWidth = 'small'
+          } else {
+            imageWidth = width;
+          }
+          return image[imageWidth];
+      }
+
+      Adapt.on('questionView:showFeedback', function(view) {
+
+        var image = view.model.get("feedbackImage");
+        if (image) {
+          var imageSrc = getImageSrc(image, Adapt.device.screenSize);
+          _.extend(image, {src: imageSrc});
+        }
 
         var alertObject = {
             title: view.model.get("feedbackTitle"),
-            body: view.model.get("feedbackMessage")
+            body: view.model.get("feedbackMessage"),
+            image: image
         };
 
         var attributes = {};
