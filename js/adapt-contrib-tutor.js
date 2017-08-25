@@ -12,13 +12,10 @@ define([
        * @returns {*}
        */
       function getImageSrc (image, width) {
-          var imageWidth;
-          if (width === 'medium') {
-            imageWidth = 'small'
-          } else {
-            imageWidth = width;
-          }
-          return image[imageWidth];
+        if (width !== 'large') {
+          width = 'small';
+        }
+        return image[ width ];
       }
 
       Adapt.on('questionView:showFeedback', function(view) {
