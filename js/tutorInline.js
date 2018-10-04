@@ -73,8 +73,6 @@ define([
 
             Adapt.trigger("popup:opened", this.$(".tutor-inner"));
 
-            this.$(".tutor-inner").a11y_focus();
-
             this.setFeedbackButtonEnabled(false);
 
         },
