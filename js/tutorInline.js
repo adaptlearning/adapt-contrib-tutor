@@ -31,7 +31,7 @@ define([
         render: function() {
             
             var data = this.model.toJSON();
-            var template = Handlebars.templates["tutor-overlay"];
+            var template = Handlebars.templates["tutor-inline"];
             this.$el.html(template(data));
 
         },
