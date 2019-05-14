@@ -1,129 +1,50 @@
-define([
-    'coreJS/adapt'
-], function(Adapt) {
+define([ 'core/js/adapt' ], function(Adapt) {
 
     var TutorInline = Backbone.View.extend({
 
-        className: 'tutor-container tutor-inline',
+        parentView: null,
+
+        type: null,
 
         events: {
-            "click .close-button, .close-button-text": "onCloseClick"
+            'click .continue-button, .close-button': 'onCloseClick'
         },
 
-        initialize: function (options) {
-
+        initialize: function(options) {
             this.parentView = options.parentView;
-            options.parentView.$(".component-inner").append(this.$el);
-
-            _.bindAll(this, "onTutorOpened", "onTutorClosed");
-
-            this.listenTo(Adapt, {
-                "remove": this.onTutorClosed,
-                "close": this.onTutorClosed
-            });
-
+            this.type = options.type;
+            _.bindAll(this, 'onTutorOpened', 'onTutorClosed');
+            this.listenTo(Adapt, 'remove close', this.onTutorClosed);
             this.render();
-
-            this.animateIn();
-
+            this.toggleFeedback(true);
         },
 
         render: function() {
-            
-            var data = this.model.toJSON();
-            var template = Handlebars.templates["tutor-inline"];
-            this.$el.html(template(data));
-
+            this.$el
+                .html(Handlebars.templates.tutor(this.model.toJSON()))
+                .appendTo(this.parentView.$('.component-inner'));
         },
 
-        animateIn: function() {
+        toggleFeedback: function(shouldExpand) {
+            var animation = this.type === 'inline' ? 'slide' : 'fade';
+            var callback = shouldExpand ? this.onTutorOpened : this.onTutorClosed;
 
-            var $componentInner = this.parentView.$(".component-inner")
-            $componentInner.css({
-                "height": $componentInner.height() + "px"
-            });
-
-            this.$(".tutor-inner").css({
-                display: "block",
-                opacity: 0
-            }).velocity({
-                opacity: 1
-            }, {
-                duration: 600
-            });
-
-            $componentInner.velocity("stop").velocity({
-                "height": ($componentInner.height()+this.$(".tutor-inner").height()) + "px"
-            }, {
-                "duration": 600,
-                "complete": this.onTutorOpened
-            });
-
+            this.parentView.$('.buttons-feedback').a11y_cntrl_enabled(!shouldExpand);
+            this.$('.continue-button, .close-button').a11y_cntrl_enabled(shouldExpand);
+            this.$('.tutor-inner').stop()[animation + 'Toggle'](600, callback);
         },
 
-        setFeedbackButtonEnabled: function(bool) {
-
-            this.parentView.$(".buttons-feedback").a11y_cntrl_enabled(bool);
-
+        onCloseClick: function() {
+            this.toggleFeedback(false);
         },
 
         onTutorOpened: function() {
-
-            this.resetComponentHeight();
-
-            Adapt.trigger("popup:opened", this.$(".tutor-inner"));
-
-            this.setFeedbackButtonEnabled(false);
-
-        },
-
-        resetComponentHeight: function() {
-            
-            var $componentInner = this.parentView.$(".component-inner")
-            $componentInner.css({
-                "height": ""
-            });
-
-        },
-
-        onCloseClick: function(e) {
-
-            e.preventDefault();
-            e.stopPropagation();
-            
-            this.animateOut();
-        
-        },
-
-        animateOut: function() {
-
-            var $componentInner = this.parentView.$(".component-inner")
-            $componentInner.css({
-                "height": $componentInner.height() + "px"
-            });
-
-            this.$(".tutor-inner").velocity({
-                opacity: 0
-            }, {
-                duration: 600
-            });
-            
-            $componentInner.velocity("stop").velocity({
-                "height": ($componentInner.height()-this.$(".tutor-inner").height()) + "px"
-            }, {
-                "duration": 600,
-                "complete": this.onTutorClosed
-            });
-
+            this.$('.tutor-inner').a11y_focus();
         },
 
         onTutorClosed: function() {
-        
-            this.resetComponentHeight();
-            this.setFeedbackButtonEnabled(true);
-
+            this.parentView.$('.buttons-feedback').a11y_focus();
             this.remove();
-            Adapt.trigger("popup:closed");
         }
 
     });

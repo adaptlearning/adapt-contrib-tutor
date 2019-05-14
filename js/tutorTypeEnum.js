@@ -1,12 +1,10 @@
 define(function() {
 
-    var TUTOR_TYPE = ENUM([
-        "NONE",
-        "NOTIFY",
-        "OVERLAY",
-        "INLINE"
-    ]);
-
-    return TUTOR_TYPE;
+    return {
+        NOTIFY: 'notify',
+        INLINE: 'inline',
+        OVERLAY: 'overlay',
+        NONE: 'none'
+    };
 
 });

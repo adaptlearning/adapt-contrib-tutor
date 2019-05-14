@@ -1,0 +1,60 @@
+.tutor-overlay {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.tutor-inner {
+    position: relative;
+    display: none;
+    height: 100%;
+    background-color: @notify-color;
+    color: @notify-text-color;
+
+    .content-inner {
+        padding: @component-padding;
+    }
+
+    .content-title {
+        .notify-popup-title;
+        padding-right: 60px;
+        margin-bottom: @notify-title-padding-bottom;
+        .dir-rtl & {
+            padding-right: inherit;
+            padding-left: 60px;
+        }
+    }
+
+    .content-body {
+        padding-right: 60px;
+        .dir-rtl & {
+            padding-right: inherit;
+            padding-left: 60px;
+        }
+        a {
+          color: @notify-text-color;
+          text-decoration: underline;
+        }
+    }
+
+    .button-container {
+        text-align: center;
+    }
+
+    .continue-button {
+        margin-top: 30px;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        .icon {
+            color: @notify-icon-color;
+        }
+    }
+}
