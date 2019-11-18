@@ -1,12 +1,12 @@
 define([
-  'coreJS/adapt'
+  'core/js/adapt'
 ],function(Adapt) {
 
   Adapt.on('questionView:showFeedback', function(view) {
 
     var alertObject = {
-      title: view.model.get("feedbackTitle"),
-      body: view.model.get("feedbackMessage")
+      title: view.model.get('feedbackTitle'),
+      body: view.model.get('feedbackMessage')
     };
 
     var attributes = {};
@@ -43,8 +43,8 @@ define([
     alertObject._classes = classes.join(' ');
     alertObject._attributes = attributes;
 
-    Adapt.once("notify:closed", function() {
-      Adapt.trigger("tutor:closed", view, alertObject);
+    Adapt.once('notify:closed', function() {
+      Adapt.trigger('tutor:closed', view, alertObject);
     });
 
     Adapt.trigger('notify:popup', alertObject);
