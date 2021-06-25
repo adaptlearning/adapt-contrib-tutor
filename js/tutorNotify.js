@@ -1,38 +1,31 @@
-define([ 'core/js/adapt' ], function(Adapt) {
+import Adapt from 'core/js/adapt';
 
-    var TutorNotify = Backbone.Controller.extend({
+export default class TutorNotify extends Backbone.Controller {
 
-        parentView: null,
+  initialize(options) {
+    this.parentView = options.parentView;
+    this.listenToOnce(Adapt, 'notify:closed', this.onNotifyClosed);
+    this.triggerNotify();
+  }
 
-        initialize: function(options) {
-            this.parentView = options.parentView;
-            this.listenToOnce(Adapt, 'notify:closed', this.onNotifyClosed);
-            this.triggerNotify();
-        },
+  triggerNotify() {
+    const {
+      _isEnabled: isButtonEnabled,
+      text: promptText
+    } = this.model.get('_textButton');
 
-        triggerNotify: function() {
-            var alertObject = _.extend({}, this.model.get('_currentFeedback'));
-            var feedback = this.model.get('_feedback');
-            var shouldShowContinueButton = feedback && feedback._showContinueButton;
-            var type = shouldShowContinueButton ? 'prompt' : 'popup';
+    this.notifyOptions = {
+      ...this.model.toJSON(),
+      _prompts: isButtonEnabled && [ { promptText } ],
+      _type: isButtonEnabled ? 'prompt' : 'popup'
+    };
 
-            if (shouldShowContinueButton) {
-                alertObject._prompts = [ { promptText: feedback.continueButtonText } ];
-                alertObject._showIcon = false;
-            }
+    Adapt.notify.create(this.notifyOptions);
+    Adapt.trigger('tutor:opened', this.parentView, this.notifyOptions);
+  }
 
-            Adapt.trigger('notify:' + type, alertObject);
-            Adapt.trigger('tutor:opened', this.parentView, alertObject);
-        },
+  onNotifyClosed() {
+    Adapt.trigger('tutor:closed', this.parentView, this.notifyOptions);
+  }
 
-        onNotifyClosed: function() {
-            var alertObject = this.model.get('_currentFeedback');
-
-            Adapt.trigger('tutor:closed', this.parentView, alertObject);
-        }
-
-    });
-
-    return TutorNotify;
-
-});
+}

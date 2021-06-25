@@ -1,28 +1,34 @@
-<div {{#each _currentFeedback._attributes}}{{@key}}="{{this}}" {{/each}} class="tutor-inner {{_currentFeedback._classes}}">
-    <span tabindex="0" class="aria-label">
-    {{_globals._accessibility._ariaLabels.feedbackPopUp}}
-    </span>
-    <div class="content-inner">
-        <div class="content-title">
-            <div class="tutor-title-inner h5" tabindex="0" role="heading" aria-level="1">
-            {{{compile _currentFeedback.title}}}
-            </div>
+{{import_globals}}
+<div class="tutor__inner">
+  <div class="tutor__content">
+    <div class="tutor__content-inner">
+      <div class="tutor__title">
+        <div class="tutor__title-inner" {{a11y_attrs_heading 'notify'}}>
+          {{{compile title}}}
         </div>
-        <div class="content-body">
-            <div class="body-inner">
-            {{{compile _currentFeedback.body}}}
-            </div>
+      </div>
+      <div class="tutor__body">
+        <div class="tutor__body-inner">
+          {{{compile body}}}
         </div>
-        {{#if _feedback._showContinueButton}}
-        <div class="button-container">
-            <button class="continue-button" aria-label="{{_globals._accessibility._ariaLabels.closePopup}}">
-            {{{_feedback.continueButtonText}}}
-            </button>
-        </div>
-        {{else}}
-        <button class="close-button" aria-label="{{_globals._accessibility._ariaLabels.closePopup}}">
-            <div class="notify-popup-icon-close icon icon-cross"></div>
+      </div>
+      {{#if _textButton._isEnabled}}
+      <div class="tutor__btn-container">
+        <button
+          class="btn-text tutor__btn js-tutor-btn"
+          aria-label="{{_globals._extensions._tutor.hideFeedback}}"
+        >
+          {{{_textButton.text}}}
         </button>
-        {{/if}}
+      </div>
+      {{else}}
+      <button
+        class="btn-icon tutor__btn-icon js-tutor-btn"
+        aria-label="{{_globals._extensions._tutor.hideFeedback}}"
+      >
+        <div class="icon"></div>
+      </button>
+      {{/if}}
     </div>
+  </div>
 </div>

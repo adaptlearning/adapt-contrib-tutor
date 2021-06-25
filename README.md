@@ -21,7 +21,33 @@ With the [Adapt CLI](https://github.com/adaptlearning/adapt-cli) installed, run 
 
 ## Settings  
 
-**Tutor** has no attributes to configure.  
+<table>
+  <tr>
+    <th colspan="2">Attribute<br></th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td colspan="2"><code>_type</code></td>
+    <td>String</td>
+    <td>Question feedback display type, either <code>"notify"</code> for default pop-up, <code>"inline"</code> to appear beneath the component, <code>"overlay"</code> to cover the component or <code>"none"</code> for no feedback to be displayed</td>
+    <td><code>"notify"</code></td>
+  </tr>
+  <tr>
+    <td rowspan="3"><code>_textButton</code></td>
+    <td><code>_isEnabled</code></td>
+    <td>Boolean</td>
+    <td>Replace the default close icon with a text button beneath the feedback</td>
+    <td><code>false</code></td>
+  </tr>
+  <tr>
+    <td><code>text</code></td>
+    <td>String</td>
+    <td>Button text</td>
+    <td><code>""</code></td>
+  </tr>
+</table>
 
 ## Limitations
 

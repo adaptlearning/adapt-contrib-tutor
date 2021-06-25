@@ -1,87 +1,56 @@
-define([
-  'core/js/adapt',
-  './tutorNotify',
-  './tutorInline',
-  './tutorTypeEnum'
-],function(Adapt, tutorNotify, tutorInline, TUTOR_TYPE) {
+import Adapt from 'core/js/adapt';
+import TutorModel from './tutorModel';
+import TutorNotify from './tutorNotify';
+import TutorView from './tutorView';
+import TUTOR_TYPE from './tutorTypeEnum';
 
-  var Tutor = Backbone.Controller.extend({
+class Tutor extends Backbone.Controller {
 
-    initialize: function() {
-      this.listenTo(Adapt, 'questionView:showFeedback', this.onQuestionViewShowFeedback);
-    },
+  initialize() {
+    this.listenTo(Adapt, 'questionView:showFeedback', this.onQuestionViewShowFeedback);
+  }
 
-    onQuestionViewShowFeedback: function(view) {
-      var feedbackObject = this.getModelFeedback(view.model);
+  onQuestionViewShowFeedback(view) {
+    const model = view.model;
 
-      view.model.set('_currentFeedback', feedbackObject);
-      this.triggerFeedback(feedbackObject, view);
-    },
+    const tutorModel = new TutorModel({
+      ...model.get('_tutor'),
+      _attributes: { 'data-adapt-id': model.get('_id') },
+      _classes: this.getClasses(model),
+      title: model.get('feedbackTitle'),
+      body: model.get('feedbackMessage')
+    });
 
-    triggerFeedback: function(feedbackObject, view) {
-      var triggerHandler;
-      var type;
+    const options = { model: tutorModel, parentView: view };
 
-      switch (feedbackObject._type) {
-        case TUTOR_TYPE.NOTIFY:
-          triggerHandler = tutorNotify;
-          break;
-        case TUTOR_TYPE.INLINE:
-          triggerHandler = tutorInline;
-          type = TUTOR_TYPE.INLINE;
-          break;
-        case TUTOR_TYPE.OVERLAY:
-          triggerHandler = tutorInline;
-          type = TUTOR_TYPE.OVERLAY;
-          break;
-        case TUTOR_TYPE.NONE:
-        default:
-          return;
-      }
-
-      new triggerHandler({
-        model: view.model,
-        parentView: view,
-        className: type && 'tutor-container tutor-' + type,
-        type: type
-      });
-    },
-
-    getModelFeedback: function(model) {
-      var feedback = model.get('_feedback');
-
-      return {
-        title: model.get('feedbackTitle'),
-        body: model.get('feedbackMessage'),
-        _type: feedback && feedback._type || TUTOR_TYPE.NOTIFY,
-        _attributes: { 'data-adapt-id': model.get('_id') },
-        _classes: this.getClasses(model)
-      };
-    },
-
-    getClasses: function(model) {
-      var classes = '';
-      var component = model.get('_component');
-      var extension = model.get('_extension');
-
-      switch (model.get('_isCorrect')) {
-        case true:
-          classes += ' is-correct';
-          break;
-        case false:
-          classes += model.get('_isAtLeastOneCorrectSelection') ?
-            ' is-partially-correct' :
-            ' is-incorrect';
-      }
-
-      if (component) classes += ' is-component is-' + component;
-      if (extension) classes += ' is-extension is-' + extension;
-
-      return classes;
+    switch (TUTOR_TYPE(tutorModel.get('_type').toUpperCase())) {
+      case TUTOR_TYPE.NOTIFY:
+        new TutorNotify(options);
+        break;
+      case TUTOR_TYPE.INLINE:
+      case TUTOR_TYPE.OVERLAY:
+        view.$('.component__inner').append(new TutorView(options).$el);
+        break;
+      case TUTOR_TYPE.NONE:
+      default:
+        // do nothing
     }
+  }
 
-  });
+  getClasses(model) {
+    const component = model.get('_component');
+    const extension = model.get('_extension');
 
-  return Adapt.tutor = new Tutor();
+    return [
+      model.get('_isCorrect') ?
+        'is-correct' :
+        model.get('_isAtLeastOneCorrectSelection') ?
+          'is-partially-correct' :
+          'is-incorrect',
+      component && `is-component is-${component}`,
+      extension && `is-extension is-${extension}`
+    ].filter(Boolean).join(' ');
+  }
+}
 
-});
+export default (Adapt.tutor = new Tutor());

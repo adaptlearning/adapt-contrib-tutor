@@ -1,60 +1,93 @@
-.tutor-overlay {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
+.tutor-type-overlay {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  overflow: auto;
+  width: 100%;
+  height: 100% + @item-padding; // to cover .btn__marking
 }
 
-.tutor-inner {
-    position: relative;
-    display: none;
-    height: 100%;
-    background-color: @notify-color;
-    color: @notify-text-color;
+.tutor__inner {
+  position: relative;
+  display: none;
+  min-height: 100%;
 
-    .content-inner {
-        padding: @component-padding;
-    }
+  .tutor-type-overlay & {
+    background-color: @notify;
+    color: @notify-inverted;
+  }
+}
 
-    .content-title {
-        .notify-popup-title;
-        padding-right: 60px;
-        margin-bottom: @notify-title-padding-bottom;
-        .dir-rtl & {
-            padding-right: inherit;
-            padding-left: 60px;
-        }
-    }
+.tutor__content-inner {
+  .l-container-padding(@notify-padding-ver, @notify-padding-hoz);
+}
 
-    .content-body {
-        padding-right: 60px;
-        .dir-rtl & {
-            padding-right: inherit;
-            padding-left: 60px;
-        }
-        a {
-          color: @notify-text-color;
-          text-decoration: underline;
-        }
-    }
+.tutor__title {
+  .notify-title;
+  margin-bottom: @notify-title-margin;
+}
 
-    .button-container {
-        text-align: center;
-    }
+.tutor__body {
+  margin-bottom: @notify-body-margin;
 
-    .continue-button {
-        margin-top: 30px;
-    }
+  .tutor-type-overlay & a {
+    .link-text;
+    color: @notify-link;
 
-    .close-button {
-        position: absolute;
-        top: 0;
-        right: 0;
-        .icon {
-            color: @notify-icon-color;
-        }
+    .no-touch &:hover {
+      color: @notify-link-hover;
+      .transition(color @duration ease-in);
     }
+  }
+}
+
+.tutor__btn {
+  margin-top: @btn-margin;
+
+  .tutor-type-overlay & {
+    background-color: @notify-btn;
+    color: @notify-btn-inverted;
+  
+    .no-touch &:hover {
+      background-color: @notify-btn-hover;
+      color: @notify-btn-inverted-hover;
+      .transition(background-color @duration ease-in, color @duration ease-in;);
+    }
+  }
+}
+
+.tutor__btn-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: @btn-padding / 2;
+  border-radius: 50%;
+  margin: @btn-margin / 2;
+  background-color: @item-color;
+  color: @item-color-inverted;
+
+  .dir-rtl & {
+    right: inherit;
+    left: 0;
+  }
+
+  .no-touch &:hover {
+    background-color: @item-color-hover;
+    color: @item-color-inverted-hover;
+    .transition(background-color @duration ease-in, color @duration ease-in;);
+  }
+
+  .tutor-type-overlay & {
+    background-color: @notify-icon;
+    color: @notify-icon-inverted;
+
+    .no-touch &:hover {
+      background-color: @notify-icon-hover;
+      color: @notify-icon-inverted-hover;
+    }
+  }
+
+  .icon {
+    .icon-cross;
+  }
 }

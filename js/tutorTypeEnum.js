@@ -1,10 +1,8 @@
-define(function() {
+const TUTOR_TYPE = ENUM([
+  'NOTIFY',
+  'INLINE',
+  'OVERLAY',
+  'NONE'
+]);
 
-    return {
-        NOTIFY: 'notify',
-        INLINE: 'inline',
-        OVERLAY: 'overlay',
-        NONE: 'none'
-    };
-
-});
+export default TUTOR_TYPE;
