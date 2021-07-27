@@ -1,4 +1,5 @@
 import Adapt from 'core/js/adapt';
+import notify from 'core/js/notify';
 
 export default class TutorNotify extends Backbone.Controller {
 
@@ -20,7 +21,7 @@ export default class TutorNotify extends Backbone.Controller {
       _type: isButtonEnabled ? 'prompt' : 'popup'
     };
 
-    Adapt.notify.create(this.notifyOptions);
+    notify.create(this.notifyOptions);
     Adapt.trigger('tutor:opened', this.parentView, this.notifyOptions);
   }
 

@@ -1,4 +1,4 @@
-import TUTOR_TYPE from './tutorTypeEnum';
+import TUTOR_TYPE from './TUTOR_TYPE';
 
 export default class TutorModel extends Backbone.Model {
 

@@ -1,8 +1,8 @@
 import Adapt from 'core/js/adapt';
-import TutorModel from './tutorModel';
-import TutorNotify from './tutorNotify';
-import TutorView from './tutorView';
-import TUTOR_TYPE from './tutorTypeEnum';
+import TutorModel from './TutorModel';
+import TutorNotify from './TutorNotify';
+import TutorView from './TutorView';
+import TUTOR_TYPE from './TUTOR_TYPE';
 
 class Tutor extends Backbone.Controller {
 
