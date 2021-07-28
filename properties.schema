@@ -41,7 +41,7 @@
                   "type": "string",
                   "default": "",
                   "title": "Classes",
-                  "help": "Question feedback classes"
+                  "help": "Question feedback classes",
                   "inputType": "Text"
                 },
                 "_hasNotifyBottomButton": {
@@ -53,7 +53,7 @@
                 },
                 "_button": {
                   "type": "object",
-                  "title": "Feedback close button",
+                  "title": "Close button",
                   "properties": {
                     "text": {
                       "type": "string",
