@@ -1,3 +1,9 @@
 "_tutor": {
-  "_type": "notify"
+  "_type": "notify",
+  "_classes": "",
+  "_hasNotifyBottomButton": false,
+  "_button": {
+    "text": "{{_globals._extensions._tutor.hideFeedback}}",
+    "ariaLabel": "{{_globals._extensions._tutor.hideFeedback}}"
+  }
 }

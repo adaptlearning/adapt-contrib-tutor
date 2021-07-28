@@ -11,13 +11,15 @@ export default class TutorNotify extends Backbone.Controller {
 
   triggerNotify() {
     const {
-      _isEnabled: isButtonEnabled,
-      text: promptText
-    } = this.model.get('_textButton');
+      _hasNotifyBottomButton: isButtonEnabled,
+      _button: { text: promptText }
+    } = this.model.toJSON();
 
     this.notifyOptions = {
       ...this.model.toJSON(),
-      _prompts: isButtonEnabled && [ { promptText } ],
+      _prompts: isButtonEnabled && [{
+        promptText: Handlebars.compile(promptText)({ _globals: Adapt.course.get('_globals') })
+      }],
       _type: isButtonEnabled ? 'prompt' : 'popup'
     };
 

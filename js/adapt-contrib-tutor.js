@@ -11,16 +11,8 @@ class Tutor extends Backbone.Controller {
   }
 
   onQuestionViewShowFeedback(view) {
-    const model = view.model;
-
-    const tutorModel = new TutorModel({
-      ...model.get('_tutor'),
-      _attributes: { 'data-adapt-id': model.get('_id') },
-      _classes: this.getClasses(model),
-      title: model.get('feedbackTitle'),
-      body: model.get('feedbackMessage')
-    });
-
+    const parentModel = view.model;
+    const tutorModel = new TutorModel(parentModel.get('_tutor'), parentModel);
     const options = { model: tutorModel, parentView: view };
 
     switch (TUTOR_TYPE(tutorModel.get('_type').toUpperCase())) {
@@ -37,20 +29,6 @@ class Tutor extends Backbone.Controller {
     }
   }
 
-  getClasses(model) {
-    const component = model.get('_component');
-    const extension = model.get('_extension');
-
-    return [
-      model.get('_isCorrect') ?
-        'is-correct' :
-        model.get('_isAtLeastOneCorrectSelection') ?
-          'is-partially-correct' :
-          'is-incorrect',
-      component && `is-component is-${component}`,
-      extension && `is-extension is-${extension}`
-    ].filter(Boolean).join(' ');
-  }
 }
 
 export default (Adapt.tutor = new Tutor());

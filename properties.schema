@@ -37,23 +37,39 @@
                   },
                   "help": "Question feedback display type"
                 },
-                "_textButton": {
+                "_classes": {
+                  "type": "string",
+                  "default": "",
+                  "title": "Classes",
+                  "help": "Question feedback classes"
+                  "inputType": "Text"
+                },
+                "_hasNotifyBottomButton": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "Enable notify bottom button",
+                  "inputType": "Checkbox",
+                  "help": "If disabled and of type notify, the default close icon will be displayed"
+                },
+                "_button": {
                   "type": "object",
-                  "title": "Text button",
+                  "title": "Feedback close button",
                   "properties": {
-                    "_isEnabled": {
-                      "type": "boolean",
-                      "default": false,
-                      "title": "Enable text button",
-                      "inputType": "Checkbox",
-                      "help": "If disabled, the default close icon will be displayed"
-                    },
                     "text": {
                       "type": "string",
-                      "default": "Hide feedback",
+                      "default": "{{_globals._extensions._tutor.hideFeedback}}",
                       "title": "Text",
                       "inputType": "Text",
-                      "translatable": true
+                      "translatable": true,
+                      "help": "For notify and inline feedback buttons. Overlay will always show a cross."
+                    },
+                    "ariaLabel": {
+                      "type": "string",
+                      "default": "{{_globals._extensions._tutor.hideFeedback}}",
+                      "title": "Aria label",
+                      "inputType": "Text",
+                      "translatable": true,
+                      "help": "For the inline button and overlay close button. Notify will always read the Text."
                     }
                   }
                 }

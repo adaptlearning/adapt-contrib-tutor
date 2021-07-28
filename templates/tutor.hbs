@@ -12,23 +12,23 @@
           {{{compile body}}}
         </div>
       </div>
-      {{#if _textButton._isEnabled}}
+      {{#equals _type 'inline'}}
       <div class="tutor__btn-container">
         <button
           class="btn-text tutor__btn js-tutor-btn"
-          aria-label="{{_globals._extensions._tutor.hideFeedback}}"
+          aria-label="{{compile_a11y_normalize _button.ariaLabel}}"
         >
-          {{{_textButton.text}}}
+          {{{compile _button.text}}}
         </button>
       </div>
       {{else}}
       <button
         class="btn-icon tutor__btn-icon js-tutor-btn"
-        aria-label="{{_globals._extensions._tutor.hideFeedback}}"
+        aria-label="{{compile_a11y_normalize _button.ariaLabel}}"
       >
         <div class="icon"></div>
       </button>
-      {{/if}}
+      {{/equals}}
     </div>
   </div>
 </div>
