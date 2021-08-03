@@ -1,17 +1,22 @@
 {{import_globals}}
+
 <div class="tutor__inner">
+
   <div class="tutor__content">
     <div class="tutor__content-inner">
+
       <div class="tutor__title">
         <div class="tutor__title-inner" {{a11y_attrs_heading 'notify'}}>
           {{{compile title}}}
         </div>
       </div>
+
       <div class="tutor__body">
         <div class="tutor__body-inner">
           {{{compile body}}}
         </div>
       </div>
+
       {{#equals _type 'inline'}}
       <div class="tutor__btn-container">
         <button
@@ -29,6 +34,8 @@
         <div class="icon"></div>
       </button>
       {{/equals}}
+
     </div>
   </div>
+
 </div>
