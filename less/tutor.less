@@ -1,93 +1,33 @@
-.tutor-type-overlay {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  overflow: auto;
-  width: 100%;
-  height: 100% + @item-padding; // to cover .btn__marking
-}
-
-.tutor__inner {
-  position: relative;
-  display: none;
-  min-height: 100%;
-
-  .tutor-type-overlay & {
-    background-color: @notify;
-    color: @notify-inverted;
-  }
-}
-
-.tutor__content-inner {
-  .l-container-padding(@notify-padding-ver, @notify-padding-hoz);
-}
-
-.tutor__title {
-  .notify-title;
-  margin-bottom: @notify-title-margin;
-}
-
-.tutor__body {
-  margin-bottom: @notify-body-margin;
-
-  .tutor-type-overlay & a {
-    .link-text;
-    color: @notify-link;
-
-    .no-touch &:hover {
-      color: @notify-link-hover;
-      .transition(color @duration ease-in);
-    }
-  }
-}
-
-.tutor__btn {
-  margin-top: @btn-margin;
-
-  .tutor-type-overlay & {
-    background-color: @notify-btn;
-    color: @notify-btn-inverted;
-  
-    .no-touch &:hover {
-      background-color: @notify-btn-hover;
-      color: @notify-btn-inverted-hover;
-      .transition(background-color @duration ease-in, color @duration ease-in;);
-    }
-  }
-}
-
-.tutor__btn-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: @btn-padding / 2;
-  border-radius: 50%;
-  margin: @btn-margin / 2;
-  background-color: @item-color;
-  color: @item-color-inverted;
-
-  .dir-rtl & {
-    right: inherit;
-    left: 0;
+.tutor {
+  &__inner {
+    position: relative;
+    display: none;
+    min-height: 100%;
   }
 
-  .no-touch &:hover {
-    background-color: @item-color-hover;
-    color: @item-color-inverted-hover;
-    .transition(background-color @duration ease-in, color @duration ease-in;);
-  }
+  &__btn-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
 
-  .tutor-type-overlay & {
-    background-color: @notify-icon;
-    color: @notify-icon-inverted;
-
-    .no-touch &:hover {
-      background-color: @notify-icon-hover;
-      color: @notify-icon-inverted-hover;
+    .dir-rtl & {
+      right: inherit;
+      left: 0;
     }
   }
 
-  .icon {
+  &__btn-icon .icon {
     .icon-cross;
+  }
+
+  // overlay
+  &-type-overlay {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    width: 100%;
+    height: 100% + @item-padding; // to cover .btn__marking
   }
 }
