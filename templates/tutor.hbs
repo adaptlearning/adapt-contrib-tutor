@@ -21,7 +21,7 @@
       <div class="tutor__btn-container">
         <button
           class="btn-text tutor__btn js-tutor-btn"
-          aria-label="{{compile_a11y_normalize _button.ariaLabel}}"
+          {{#if _button.ariaLabel}}aria-label="{{compile_a11y_normalize _button.ariaLabel}}"{{/if}}
         >
           {{{compile _button.text}}}
         </button>
@@ -29,7 +29,7 @@
       {{else}}
       <button
         class="btn-icon tutor__btn-icon js-tutor-btn"
-        aria-label="{{compile_a11y_normalize _button.ariaLabel}}"
+        {{#if _button.ariaLabel}}aria-label="{{compile_a11y_normalize _button.ariaLabel}}"{{/if}}
       >
         <div class="icon"></div>
       </button>
