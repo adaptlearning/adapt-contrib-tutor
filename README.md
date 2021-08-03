@@ -31,7 +31,7 @@ With the [Adapt CLI](https://github.com/adaptlearning/adapt-cli) installed, run 
 
 >**text** (string): The text for notify and inline feedback buttons. Overlay will always show a cross. Default `"{{_globals._extensions._tutor.hideFeedback}}"`.
 
->**ariaLabel** (string): The alternative screen reader text For the inline button and overlay close button. Notify will always read the Text. Default `"{{_globals._extensions._tutor.hideFeedback}}"`.
+>**ariaLabel** (string): The alternative screen reader text for the `"inline"` and `"overlay"` close buttons. Notify will always read the `"text"`. Default `"{{_globals._extensions._tutor.hideFeedback}}"`.
 
 
 ## Limitations
