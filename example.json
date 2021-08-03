@@ -1,9 +1,10 @@
-"_tutor": {
-  "_type": "notify",
-  "_classes": "",
-  "_hasNotifyBottomButton": false,
-  "_button": {
-    "text": "{{_globals._extensions._tutor.hideFeedback}}",
-    "ariaLabel": "{{_globals._extensions._tutor.hideFeedback}}"
+  // add to components json
+  "_tutor": {
+    "_type": "notify",
+    "_classes": "",
+    "_hasNotifyBottomButton": false,
+    "_button": {
+      "text": "{{_globals._extensions._tutor.hideFeedback}}",
+      "ariaLabel": "{{_globals._extensions._tutor.hideFeedback}}"
+    }
   }
-}
