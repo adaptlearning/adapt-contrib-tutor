@@ -16,8 +16,19 @@
     }
   }
 
-  &__btn-icon .icon {
-    .icon-cross;
+  &__btn-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .dir-rtl & {
+      right: inherit;
+      left: 0;
+    }
+    
+    .icon {
+      .icon-cross;
+    }
   }
 
   // overlay
