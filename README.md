@@ -21,7 +21,18 @@ With the [Adapt CLI](https://github.com/adaptlearning/adapt-cli) installed, run 
 
 ## Settings  
 
-**Tutor** has no attributes to configure.  
+**\_type** (string): Question feedback display type, either `"notify"` for default pop-up, `"inline"` to appear beneath the component, `"overlay"` to cover the component or `"none"` for no feedback to be displayed.
+
+**\_classes** (string): CSS class name to be applied to feedback containing div. The class must be predefined in one of the Less files. Separate multiple classes with a space.
+
+**\_hasNotifyBottomButton** (boolean): Instead of a standard notify close button, the button will appear beneath the notify text. This option is only relevant when `_type` is set to `"notify"`. Default `false`.
+
+**\_button** (object): An object representing the `"notify"` and `"inline"` close button. It contains values for **text** and **ariaLabel**.
+
+>**text** (string): The text for notify and inline feedback buttons. Overlay will always show a cross. Default `"{{_globals._extensions._tutor.hideFeedback}}"`.
+
+>**ariaLabel** (string): The alternative screen reader text for the `"inline"` and `"overlay"` close buttons. Notify will always read the `"text"`. Default `"{{_globals._extensions._tutor.hideFeedback}}"`.
+
 
 ## Limitations
 
