@@ -15,6 +15,68 @@
     "pluginLocations": {
       "type": "object",
       "properties": {
+        "course": {
+          "type": "object",
+          "properties": {
+            "_tutor": {
+              "type": "object",
+              "legend": "Tutor",
+              "properties": {
+                "_type": {
+                  "type": "string",
+                  "default": "notify",
+                  "title": "Type",
+                  "inputType": {
+                    "type": "Select",
+                    "options": [
+                      "notify",
+                      "inline",
+                      "overlay",
+                      "none"
+                    ]
+                  },
+                  "help": "Question feedback display type"
+                },
+                "_classes": {
+                  "type": "string",
+                  "default": "",
+                  "title": "Classes",
+                  "help": "Question feedback classes",
+                  "inputType": "Text"
+                },
+                "_hasNotifyBottomButton": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "Enable notify bottom button",
+                  "inputType": "Checkbox",
+                  "help": "If disabled and of type notify, the default close icon will be displayed"
+                },
+                "_button": {
+                  "type": "object",
+                  "title": "Close button",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "default": "{{_globals._extensions._tutor.hideFeedback}}",
+                      "title": "Text",
+                      "inputType": "Text",
+                      "translatable": true,
+                      "help": "For notify and inline feedback buttons. Overlay will always show a cross."
+                    },
+                    "ariaLabel": {
+                      "type": "string",
+                      "default": "{{_globals._extensions._tutor.hideFeedback}}",
+                      "title": "Aria label",
+                      "inputType": "Text",
+                      "translatable": true,
+                      "help": "For the inline button and overlay close button. Notify will always read the Text."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "component": {
           "type": "object",
           "properties": {
@@ -22,6 +84,13 @@
               "type": "object",
               "legend": "Tutor",
               "properties": {
+                "_isInherited": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "Use course defaults",
+                  "inputType": "Checkbox",
+                  "help": "If disabled, these settings will override the course defaults"
+                },
                 "_type": {
                   "type": "string",
                   "default": "notify",
