@@ -86,7 +86,7 @@
               "properties": {
                 "_isInherited": {
                   "type": "boolean",
-                  "default": false,
+                  "default": true,
                   "title": "Use course defaults",
                   "inputType": "Checkbox",
                   "help": "If disabled, these settings will override the course defaults"
