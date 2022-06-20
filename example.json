@@ -11,7 +11,7 @@
 
   // add to components json
   "_tutor": {
-    "_isInherited": false,
+    "_isInherited": true,
     "_type": "notify",
     "_classes": "",
     "_hasNotifyBottomButton": false,
