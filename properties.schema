@@ -75,7 +75,7 @@
                 },
                 "altTitle": {
                   "type": "string",
-                  "default": "",
+                  "default": "Feedback",
                   "title": "Alternative title",
                   "help": "Dialog heading for Assistive technology if no title provided",
                   "inputType": "Text"
