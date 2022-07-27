@@ -12,6 +12,7 @@ export default class TutorModel extends Backbone.Model {
         text: '{{_globals._extensions._tutor.hideFeedback}}',
         ariaLabel: '{{_globals._extensions._tutor.hideFeedback}}'
       },
+      altTitle:'{{_globals._extensions._tutor.altTitle}}',
       ...Adapt.course.get('_tutor')
     };
   }

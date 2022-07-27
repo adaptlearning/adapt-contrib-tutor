@@ -6,7 +6,8 @@
     "_button": {
       "text": "{{_globals._extensions._tutor.hideFeedback}}",
       "ariaLabel": "{{_globals._extensions._tutor.hideFeedback}}"
-    }
+    },
+    "altTitle": "Alternative Feedback Title"
   }
 
   // add to components json
