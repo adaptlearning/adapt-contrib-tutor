@@ -7,7 +7,11 @@
 
       <div class="tutor__title">
         <div class="tutor__title-inner" {{a11y_attrs_heading 'notify'}}>
-          {{{compile title}}}
+          {{#if title}}
+            {{{compile title}}}
+          {{else if altTitle}}
+            {{{compile altTitle}}}
+          {{/if}}
         </div>
       </div>
 
