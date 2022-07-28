@@ -72,13 +72,6 @@
                       "help": "For the inline button and overlay close button. Notify will always read the Text."
                     }
                   }
-                },
-                "altTitle": {
-                  "type": "string",
-                  "default": "Feedback",
-                  "title": "Alternative title",
-                  "help": "Dialog heading for Assistive technology if no title provided",
-                  "inputType": "Text"
                 }
               }
             }
