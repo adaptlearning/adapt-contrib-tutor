@@ -5,11 +5,19 @@
   <div class="tutor__content">
     <div class="tutor__content-inner">
 
+      {{#if title}}
       <div class="tutor__title">
-        <div class="tutor__title-inner" {{a11y_attrs_heading 'notify'}}>
+        <div class="tutor__title-inner" role="heading" aria-level="{{a11y_aria_level _id '@component+1' _ariaLevel }}">
           {{{compile title}}}
         </div>
       </div>
+      {{else if altTitle}}
+      <div class="tutor__title aria-label">
+        <div class="tutor__title-inner" role="heading" aria-level="{{a11y_aria_level _id '@component+1' _ariaLevel }}">
+          {{{compile altTitle}}}
+        </div>
+      </div>
+      {{/if}}
 
       <div class="tutor__body">
         <div class="tutor__body-inner">
