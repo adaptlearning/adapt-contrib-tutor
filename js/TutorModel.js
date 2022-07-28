@@ -4,7 +4,7 @@ import TUTOR_TYPE from './TUTOR_TYPE';
 export default class TutorModel extends Backbone.Model {
 
   defaults() {
-    const defaults = {
+    return {
       _type: TUTOR_TYPE.NOTIFY.asLowerCase,
       _classes: '',
       _hasNotifyBottomButton: false,
@@ -14,9 +14,6 @@ export default class TutorModel extends Backbone.Model {
       },
       ...Adapt.course.get('_tutor')
     };
-
-    defaults.altTitle ??= Adapt.course.get('_globals')._extensions._tutor.altTitle;
-    return defaults;
   }
 
   initialize(data, parentModel) {
