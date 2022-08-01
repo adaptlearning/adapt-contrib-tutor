@@ -1,6 +1,6 @@
 {
   "name": "adapt-contrib-tutor",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "framework": ">=5.18",
   "homepage": "https://github.com/adaptlearning/adapt-contrib-tutor",
   "bugs": "https://github.com/adaptlearning/adapt-contrib-tutor/issues",
