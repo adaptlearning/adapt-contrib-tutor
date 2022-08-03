@@ -20,6 +20,7 @@ export default class TutorModel extends Backbone.Model {
     data = $.extend(true, this.defaults(), data?._isInherited === true ? null : data, {
       _attributes: { 'data-adapt-id': parentModel.get('_id') },
       _id: parentModel.get('_id'),
+      _shouldRenderId: false,
       title: parentModel.get('feedbackTitle'),
       body: parentModel.get('feedbackMessage')
     });
