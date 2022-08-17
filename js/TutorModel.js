@@ -21,6 +21,7 @@ export default class TutorModel extends Backbone.Model {
       _attributes: { 'data-adapt-id': parentModel.get('_id') },
       _id: parentModel.get('_id'),
       _shouldRenderId: false,
+      altTitle: parentModel.get('altFeedbackTitle'),
       title: parentModel.get('feedbackTitle'),
       body: parentModel.get('feedbackMessage')
     });
