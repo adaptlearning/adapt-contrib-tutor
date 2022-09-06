@@ -22,7 +22,7 @@ export default class TutorModel extends Backbone.Model {
       _id: parentModel.get('_id'),
       _shouldRenderId: false,
       ...(
-        parentModel.getFeedback() ||
+        parentModel.getFeedback?.() ||
         {
           altTitle: parentModel.get('altFeedbackTitle'),
           title: parentModel.get('feedbackTitle'),
