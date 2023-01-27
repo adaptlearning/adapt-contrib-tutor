@@ -7,7 +7,33 @@ import TUTOR_TYPE from './TUTOR_TYPE';
 class Tutor extends Backbone.Controller {
 
   initialize() {
-    this.listenTo(Adapt, 'questionView:showFeedback', this.onQuestionViewShowFeedback);
+    this.listenTo(Adapt, {
+      'componentView:postRender': this.onComponentViewPostRender,
+      'questionView:showFeedback': this.onQuestionViewShowFeedback
+    });
+  }
+
+  onComponentViewPostRender(view) {
+    const model = view.model;
+    if (!model.isTypeGroup('question')) return;
+    const config = model.get('_tutor');
+    if (!config) return;
+    const type = TUTOR_TYPE(config?._type.toUpperCase());
+    if (type !== TUTOR_TYPE.INLINE) return;
+    this.listenToOnce(Adapt, 'buttonsView:postRender', this.onButtonsViewPostRender);
+    if (model.get('_canShowFeedback') && model.get('_isSubmitted')) {
+      model.setupFeedback();
+      Adapt.trigger('questionView:showFeedback', view);
+    }
+  }
+
+  onButtonsViewPostRender(view) {
+    const $btnAction = view.$('.js-btn-action');
+    const $btnFeedback = view.$('.js-btn-feedback');
+    const $btnMarking = view.$('.js-btn-marking');
+    $btnAction.addClass('is-full-width');
+    $btnFeedback.addClass('u-display-none');
+    $btnMarking.addClass('is-full-width');
   }
 
   onQuestionViewShowFeedback(view) {
