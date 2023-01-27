@@ -18,7 +18,7 @@ class Tutor extends Backbone.Controller {
     if (!model.isTypeGroup('question')) return;
     const config = model.get('_tutor');
     if (!config) return;
-    const type = TUTOR_TYPE(config?._type.toUpperCase());
+    const type = TUTOR_TYPE(config._type?.toUpperCase());
     if (type !== TUTOR_TYPE.INLINE) return;
     this.listenToOnce(Adapt, 'buttonsView:postRender', this.onButtonsViewPostRender);
     if (model.get('_canShowFeedback') && model.get('_isSubmitted')) {
