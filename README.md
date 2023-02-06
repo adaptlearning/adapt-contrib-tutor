@@ -21,7 +21,7 @@ As one of Adapt's _[core extensions](https://github.com/adaptlearning/adapt_fram
 
 ## Settings
 
-**\_type** (string): Question feedback display type, either `"notify"` for default pop-up, `"inline"` to appear beneath the component, `"overlay"` to cover the component or `"none"` for no feedback to be displayed.
+**\_type** (string): Question feedback display type, either `"notify"` for default pop-up, `"inline"` to appear beneath the component, `"overlay"` to cover the component or `"none"` for no feedback to be displayed. Unlike other values, `"inline"` feedback will automatically appear across sessions for submitted questions, and accordingly manipulates the core [buttonsView](https://github.com/adaptlearning/adapt-contrib-core/blob/master/js/views/buttonsView.js) by hiding `btn__feedback` and adding the `is-full-width` class to `btn__action`.
 
 **\_classes** (string): CSS class name to be applied to feedback containing div. The class must be predefined in one of the Less files. Separate multiple classes with a space.
 

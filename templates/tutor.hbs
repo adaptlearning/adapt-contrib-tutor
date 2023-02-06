@@ -25,23 +25,14 @@
         </div>
       </div>
 
-      {{#equals _type 'inline'}}
-      <div class="tutor__btn-container">
-        <button
-          class="btn-text tutor__btn js-tutor-btn"
-          {{#if _button.ariaLabel}}aria-label="{{compile_a11y_normalize _button.ariaLabel}}"{{/if}}
-        >
-          {{{compile _button.text}}}
-        </button>
-      </div>
-      {{else}}
+      {{#any (equals _type 'notify') (equals _type 'overlay')}}
       <button
         class="btn-icon tutor__btn-icon js-tutor-btn"
         {{#if _button.ariaLabel}}aria-label="{{compile_a11y_normalize _button.ariaLabel}}"{{/if}}
       >
         <span class="icon"></span>
       </button>
-      {{/equals}}
+      {{/any}}
 
     </div>
   </div>
