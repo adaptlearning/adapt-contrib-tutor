@@ -1,0 +1,77 @@
+{
+  "$anchor": "tutor-component",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "$patch": {
+    "source": {
+      "$ref": "component"
+    },
+    "with": {
+      "properties": {
+        "_tutor": {
+          "type": "object",
+          "title": "Tutor",
+          "default": {},
+          "properties": {
+            "_isInherited": {
+              "type": "boolean",
+              "title": "Use course defaults",
+              "description": "If disabled, these settings will override the course defaults",
+              "default": true
+            },
+            "_type": {
+              "type": "string",
+              "title": "Type",
+              "description": "Question feedback display type",
+              "default": "notify",
+              "enum": [
+                "notify",
+                "inline",
+                "overlay",
+                "none"
+              ],
+              "_backboneForms": "Select"
+            },
+            "_classes": {
+              "type": "string",
+              "title": "Classes",
+              "description": "Question feedback classes",
+              "default": ""
+            },
+            "_hasNotifyBottomButton": {
+              "type": "boolean",
+              "title": "Enable notify bottom button",
+              "description": "If disabled and of type notify, the default close icon will be displayed",
+              "default": false
+            },
+            "_button": {
+              "type": "object",
+              "title": "Close button",
+              "default": {},
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "title": "Text",
+                  "description": "For notify and inline feedback buttons. Overlay will always show a cross.",
+                  "default": "{{_globals._extensions._tutor.hideFeedback}}",
+                  "_adapt": {
+                    "translatable": true
+                  }
+                },
+                "ariaLabel": {
+                  "type": "string",
+                  "title": "Aria label",
+                  "description": "For the inline button and overlay close button. Notify will always read the Text.",
+                  "default": "{{_globals._extensions._tutor.hideFeedback}}",
+                  "_adapt": {
+                    "translatable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
