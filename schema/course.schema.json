@@ -10,11 +10,11 @@
       "properties": {
         "_globals": {
           "type": "object",
-          "title": "Tutor",
           "default": {},
           "properties": {
             "_tutor": {
               "type": "object",
+              "title": "Tutor",
               "default": {},
               "properties": {
                 "hideFeedback": {
