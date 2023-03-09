@@ -9,25 +9,28 @@ class Tutor extends Backbone.Controller {
   initialize() {
     this.listenTo(Adapt, {
       'componentView:postRender': this.onComponentViewPostRender,
-      'questionView:showFeedback': this.onQuestionViewShowFeedback
+      'questionView:showFeedback': this.onQuestionViewShowFeedback,
+      'buttonsView:postRender': this.onButtonsViewPostRender
     });
   }
 
   onComponentViewPostRender(view) {
-    const model = view.model;
-    if (!model.isTypeGroup('question')) return;
-    const config = model.get('_tutor');
-    if (!config) return;
-    const type = TUTOR_TYPE(config._type?.toUpperCase());
-    if (type !== TUTOR_TYPE.INLINE) return;
-    this.listenToOnce(Adapt, 'buttonsView:postRender', this.onButtonsViewPostRender);
-    if (model.get('_canShowFeedback') && model.get('_isSubmitted')) {
-      model.setupFeedback();
-      Adapt.trigger('questionView:showFeedback', view);
-    }
+    const { model } = view;
+    const shouldShowFeedback = (model.get('_canShowFeedback') && model.get('_isSubmitted'));
+    if (!shouldShowFeedback) return;
+    model.setupFeedback();
+    Adapt.trigger('questionView:showFeedback', view);
   }
 
   onButtonsViewPostRender(view) {
+    const { model } = view;
+    if (!model.isTypeGroup('question')) return;
+    const config = !model.get('_tutor')?._isInherited
+      ? Adapt.course.get('_tutor')
+      : model.get('_tutor');
+    if (!config) return;
+    const type = TUTOR_TYPE(config._type?.toUpperCase());
+    if (type !== TUTOR_TYPE.INLINE) return;
     const $btnAction = view.$('.js-btn-action');
     const $btnFeedback = view.$('.js-btn-feedback');
     const $btnMarking = view.$('.js-btn-marking');
