@@ -12,17 +12,23 @@
           "type": "object",
           "default": {},
           "properties": {
-            "_tutor": {
+            "_extensions": {
               "type": "object",
-              "title": "Tutor",
               "default": {},
               "properties": {
-                "hideFeedback": {
-                  "type": "string",
-                  "title": "Hide feedback",
-                  "default": "Hide feedback",
-                  "_adapt": {
-                    "translatable": true
+                "_tutor": {
+                  "type": "object",
+                  "title": "Tutor",
+                  "default": {},
+                  "properties": {
+                    "hideFeedback": {
+                      "type": "string",
+                      "title": "Hide feedback",
+                      "default": "Hide feedback",
+                      "_adapt": {
+                        "translatable": true
+                      }
+                    }
                   }
                 }
               }
