@@ -26,8 +26,8 @@ class Tutor extends Backbone.Controller {
     const { model } = view;
     if (!model.isTypeGroup('question')) return;
     const config = !model.get('_tutor')?._isInherited
-      ? Adapt.course.get('_tutor')
-      : model.get('_tutor');
+      ? model.get('_tutor')
+      : Adapt.course.get('_tutor');
     if (!config) return;
     const type = TUTOR_TYPE(config._type?.toUpperCase());
     if (type !== TUTOR_TYPE.INLINE) return;
