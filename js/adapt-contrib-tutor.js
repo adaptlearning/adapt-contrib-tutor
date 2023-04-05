@@ -16,6 +16,7 @@ class Tutor extends Backbone.Controller {
 
   onComponentViewPostRender(view) {
     const { model } = view;
+    if (!model.isTypeGroup('question')) return;
     const shouldShowFeedback = (model.get('_canShowFeedback') && model.get('_isSubmitted'));
     if (!shouldShowFeedback) return;
     model.setupFeedback();
@@ -24,7 +25,6 @@ class Tutor extends Backbone.Controller {
 
   onButtonsViewPostRender(view) {
     const { model } = view;
-    if (!model.isTypeGroup('question')) return;
     const config = (!model.get('_tutor') || model.get('_tutor')?._isInherited === true)
       ? Adapt.course.get('_tutor')
       : model.get('_tutor');
