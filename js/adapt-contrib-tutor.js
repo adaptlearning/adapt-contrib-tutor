@@ -14,10 +14,21 @@ class Tutor extends Backbone.Controller {
     });
   }
 
+  getTutorType(model) {
+    const config = (!model.get('_tutor') || (model.get('_tutor')?._isInherited ?? true))
+      ? Adapt.course.get('_tutor')
+      : model.get('_tutor');
+    if (!config) return;
+
+    return TUTOR_TYPE(config._type?.toUpperCase()).asString;
+  }
+
   onComponentViewPostRender(view) {
     const { model } = view;
     if (!model.isTypeGroup('question')) return;
-    const shouldShowFeedback = (model.get('_canShowFeedback') && model.get('_isSubmitted'));
+    const type = this.getTutorType(model);
+    if (!type) return;
+    const shouldShowFeedback = (model.get('_canShowFeedback') && model.get('_isSubmitted') && type !== TUTOR_TYPE.INLINE);
     if (!shouldShowFeedback) return;
     model.setupFeedback();
     Adapt.trigger('questionView:showFeedback', view);
@@ -25,12 +36,8 @@ class Tutor extends Backbone.Controller {
 
   onButtonsViewPostRender(view) {
     const { model } = view;
-    const config = (!model.get('_tutor') || (model.get('_tutor')?._isInherited ?? true))
-      ? Adapt.course.get('_tutor')
-      : model.get('_tutor');
-    if (!config) return;
-    const type = TUTOR_TYPE(config._type?.toUpperCase());
-    if (type !== TUTOR_TYPE.INLINE) return;
+    const type = this.getTutorType(model);
+    if (!type || type !== TUTOR_TYPE.INLINE) return;
     const $btnAction = view.$('.js-btn-action');
     const $btnFeedback = view.$('.js-btn-feedback');
     const $btnMarking = view.$('.js-btn-marking');
