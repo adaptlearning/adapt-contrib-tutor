@@ -15,7 +15,7 @@ class Tutor extends Backbone.Controller {
   }
 
   getTutorType(model) {
-    const config = (!model.get('_tutor') || (model.get('_tutor')?._isInherited ?? true))
+    const config = (model.get('_tutor')?._isInherited ?? true)
       ? Adapt.course.get('_tutor')
       : model.get('_tutor');
     if (!config) return;
