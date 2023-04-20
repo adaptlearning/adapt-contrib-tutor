@@ -37,7 +37,7 @@ class Tutor extends Backbone.Controller {
   onButtonsViewPostRender(view) {
     const { model } = view;
     const type = this.getTutorType(model);
-    if (!type || type !== TUTOR_TYPE.INLINE) return;
+    if (type !== TUTOR_TYPE.INLINE) return;
     const $btnAction = view.$('.js-btn-action');
     const $btnFeedback = view.$('.js-btn-feedback');
     const $btnMarking = view.$('.js-btn-marking');
