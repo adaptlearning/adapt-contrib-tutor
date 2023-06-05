@@ -28,7 +28,7 @@ class Tutor extends Backbone.Controller {
     if (!model.isTypeGroup('question')) return;
     const type = this.getTutorType(model);
     if (!type) return;
-    const shouldShowFeedback = (model.get('_canShowFeedback') && model.get('_isSubmitted') && type !== TUTOR_TYPE.INLINE);
+    const shouldShowFeedback = (model.get('_canShowFeedback') && model.get('_isSubmitted') && type === TUTOR_TYPE.INLINE.asString);
     if (!shouldShowFeedback) return;
     model.setupFeedback();
     Adapt.trigger('questionView:showFeedback', view);
