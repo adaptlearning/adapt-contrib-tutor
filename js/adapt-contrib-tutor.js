@@ -20,7 +20,7 @@ class Tutor extends Backbone.Controller {
       : model.get('_tutor');
     if (!config) return;
 
-    return TUTOR_TYPE(config._type?.toUpperCase()).asString;
+    return TUTOR_TYPE(config._type?.toUpperCase());
   }
 
   onComponentViewPostRender(view) {
@@ -28,7 +28,7 @@ class Tutor extends Backbone.Controller {
     if (!model.isTypeGroup('question')) return;
     const type = this.getTutorType(model);
     if (!type) return;
-    const shouldShowFeedback = (model.get('_canShowFeedback') && model.get('_isSubmitted') && type === TUTOR_TYPE.INLINE.asString);
+    const shouldShowFeedback = (model.get('_canShowFeedback') && model.get('_isSubmitted') && type === TUTOR_TYPE.INLINE);
     if (!shouldShowFeedback) return;
     model.setupFeedback();
     Adapt.trigger('questionView:showFeedback', view);
