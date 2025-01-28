@@ -34,3 +34,14 @@ describe('Tutor - v1.0.0 to v4.0.0', async () => {
   });
   updatePlugin('Tutor - update to v4.0.0', { name: 'adapt-contrib-tutor', version: '4.0.0', framework: '>=5.18' });
 });
+
+describe('Tutor - v4.0.0 to v4.1.0', async () => {
+  let tutors, course, courseTutorGlobals;
+  whereFromPlugin('Tutor - from v4.1.0', { name: 'adapt-contrib-tutor', version: '<4.1.0' });
+  whereContent('Tutor - where tutor', async content => {
+    tutors = content.filter(({ _extension }) => _extension === 'tutor');
+    if (tutors) return true;
+  });
+
+  updatePlugin('Tutor - update to v4.1.0', { name: 'adapt-contrib-tutor', version: '4.1.0', framework: '>=5.18' });
+});
