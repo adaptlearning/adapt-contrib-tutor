@@ -47,6 +47,14 @@ describe('Tutor - v2.1.0 to v4.0.0', async () => {
     components.forEach(component => { _.set(component._tutor, '_button', {}); });
     return true;
   });
+  mutateContent('Tutor - add _tutor._button.text to components', async (content) => {
+    components.forEach(component => { _.set(component._tutor._button, 'text', '{{_globals._extensions._tutor.hideFeedback}}'); });
+    return true;
+  });
+  mutateContent('Tutor - add _tutor._button.ariaLabel to components', async (content) => {
+    components.forEach(component => { _.set(component._tutor._button, 'ariaLabel', '{{_globals._extensions._tutor.hideFeedback}}'); });
+    return true;
+  });
   checkContent('Tutor - check for _tutor component attribute', async content => {
     const isValid = components.every(({ _tutor }) => _tutor !== undefined);
     if (!isValid) throw new Error('Tutor - components _tutor invalid');
@@ -70,6 +78,16 @@ describe('Tutor - v2.1.0 to v4.0.0', async () => {
   checkContent('Tutor - check for _tutor._button on components', async content => {
     const isValid = components.every(({ _tutor }) => _tutor._button !== undefined);
     if (!isValid) throw new Error('Tutor - component _tutor._button invalid');
+    return true;
+  });
+  checkContent('Tutor - check for _tutor._button.text on components', async content => {
+    const isValid = components.every(({ _tutor }) => _tutor._button.text !== undefined);
+    if (!isValid) throw new Error('Tutor - component _tutor._button.text invalid');
+    return true;
+  });
+  checkContent('Tutor - check for _tutor._button.ariaLabel on components', async content => {
+    const isValid = components.every(({ _tutor }) => _tutor._button.ariaLabel !== undefined);
+    if (!isValid) throw new Error('Tutor - component _tutor._button.ariaLabel invalid');
     return true;
   });
   updatePlugin('Tutor - update to v4.0.0', { name: 'adapt-contrib-tutor', version: '4.0.0', framework: '>=5.18.0' });
