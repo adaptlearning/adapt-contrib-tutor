@@ -173,5 +173,16 @@ describe('Tutor - v4.0.0 to v4.1.0', async () => {
     if (!isValid) throw new Error('Tutor - course _tutor._button.ariaLabel invalid');
     return true;
   });
+
+  // Update components
+  mutateContent('Tutor - add _tutor._isInherited to components', async (content) => {
+    components.forEach(component => { _.set(component._tutor, '_isInherited', true); });
+    return true;
+  });
+  checkContent('Tutor - check for _tutor._isInherited on components', async content => {
+    const isValid = components.every(({ _tutor }) => _tutor._isInherited !== undefined);
+    if (!isValid) throw new Error('Tutor - component _tutor._isInherited invalid');
+    return true;
+  });
   updatePlugin('Tutor - update to v4.1.0', { name: 'adapt-contrib-tutor', version: '4.1.0', framework: '>=5.18.0' });
 });
