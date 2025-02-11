@@ -20,9 +20,8 @@ describe('Tutor - v2.1.0 to v4.0.0', async () => {
     return true;
   });
   checkContent('Tutor - check globals hideFeedback attribute', async content => {
-    if (courseTutorGlobals?.hideFeedback === undefined || courseTutorGlobals.hideFeedback !== 'Hide feedback') {
-      throw new Error('Tutor - globals hideFeedback invalid');
-    }
+    const isValid = courseTutorGlobals.hideFeedback === 'Hide feedback';
+    if (!isValid) throw new Error('Tutor - globals hideFeedback invalid');
     return true;
   });
 
