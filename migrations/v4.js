@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 describe('Tutor - v2.1.0 to v4.0.0', async () => {
   let course, courseTutorGlobals, components;
-  whereFromPlugin('Tutor - from v2.1.0', { name: 'adapt-contrib-tutor', version: '<4.0.0' });
+  whereFromPlugin('Tutor - from v2.1.0', { name: 'adapt-contrib-tutor', version: '>=2.0.0 <4.0.0' });
   mutateContent('Tutor - add globals if missing', async (content) => {
     course = getCourse();
     if (!_.has(course, '_globals._extensions._tutor')) _.set(course, '_globals._extensions._tutor', {});
