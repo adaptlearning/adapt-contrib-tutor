@@ -62,7 +62,7 @@ describe('Tutor - v2.1.0 to v4.0.0', async () => {
     return true;
   });
   checkContent('Tutor - check for _tutor._type on components', async content => {
-    const isValid = components.every(({ _tutor }) => _tutor?._type === 'notify');
+    const isValid = components.every(({ _tutor }) => _tutor._type === 'notify');
     if (!isValid) throw new Error('Tutor - component _tutor._type invalid');
     return true;
   });
@@ -72,7 +72,7 @@ describe('Tutor - v2.1.0 to v4.0.0', async () => {
     return true;
   });
   checkContent('Tutor - check for _tutor._hasNotifyBottomButton on components', async content => {
-    const isValid = components.every(({ _tutor }) => _tutor?._hasNotifyBottomButton === false);
+    const isValid = components.every(({ _tutor }) => _tutor._hasNotifyBottomButton === false);
     if (!isValid) throw new Error('Tutor - component _tutor._hasNotifyBottomButton invalid');
     return true;
   });
@@ -82,12 +82,12 @@ describe('Tutor - v2.1.0 to v4.0.0', async () => {
     return true;
   });
   checkContent('Tutor - check for _tutor._button.text on components', async content => {
-    const isValid = components.every(({ _tutor }) => _tutor?._button?.text === '{{_globals._extensions._tutor.hideFeedback}}');
+    const isValid = components.every(({ _tutor }) => _tutor._button?.text === '{{_globals._extensions._tutor.hideFeedback}}');
     if (!isValid) throw new Error('Tutor - component _tutor._button.text invalid');
     return true;
   });
   checkContent('Tutor - check for _tutor._button.ariaLabel on components', async content => {
-    const isValid = components.every(({ _tutor }) => _tutor?._button?.ariaLabel === '{{_globals._extensions._tutor.hideFeedback}}');
+    const isValid = components.every(({ _tutor }) => _tutor._button?.ariaLabel === '{{_globals._extensions._tutor.hideFeedback}}');
     if (!isValid) throw new Error('Tutor - component _tutor._button.ariaLabel invalid');
     return true;
   });
@@ -169,7 +169,7 @@ describe('Tutor - v4.0.0 to v4.1.0', async () => {
     return true;
   });
   checkContent('Tutor - check for _tutor._isInherited on components', async content => {
-    const isValid = components.every(({ _tutor }) => _tutor?._isInherited === true);
+    const isValid = components.every(({ _tutor }) => _tutor._isInherited === true);
     if (!isValid) throw new Error('Tutor - component _tutor._isInherited invalid');
     return true;
   });
