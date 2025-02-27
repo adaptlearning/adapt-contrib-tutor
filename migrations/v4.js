@@ -165,7 +165,7 @@ describe('Tutor - v4.0.0 to v4.1.0', async () => {
   // Update components
   mutateContent('Tutor - add _tutor._isInherited to components', async (content) => {
     components = content.filter(({ _component }) => _component);
-    components.forEach(component => { _.set(component._tutor, '_isInherited', true); });
+    components.forEach(component => { _.set(component, '_tutor._isInherited', true); });
     return true;
   });
   checkContent('Tutor - check for _tutor._isInherited on components', async content => {
