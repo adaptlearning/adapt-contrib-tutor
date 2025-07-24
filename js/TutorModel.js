@@ -22,19 +22,19 @@ export default class TutorModel extends Backbone.Model {
       title: parentModel.get('feedbackTitle'),
       body: parentModel.get('feedbackMessage')
     };
-    
+
     data = $.extend(true, this.defaults(), data?._isInherited === true ? null : data, {
       _attributes: { 'data-adapt-id': parentModel.get('_id') },
       _id: parentModel.get('_id'),
       _shouldRenderId: false,
       ...feedbackData
     });
-    
+
     // Set default image alignment if graphic is provided but alignment is not specified
     if (data._graphic?._src && !data._imageAlignment) {
       data._imageAlignment = 'right';
     }
-    
+
     data._classes += ` tutor ${this.getOriginClasses(parentModel)}`;
     this.set(data);
   }
