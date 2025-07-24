@@ -20,3 +20,29 @@
       "ariaLabel": "{{_globals._extensions._tutor.hideFeedback}}"
     }
   }
+
+  // example component with graphics support for inline feedback
+  "_feedback": {
+    "_correct": {
+      "title": "Correct!",
+      "body": "Well done, that's the right answer.",
+      "_imageAlignment": "right",
+      "_graphic": {
+        "alt": "Correct icon",
+        "_src": "assets/correct.png"
+      }
+    },
+    "_incorrect": {
+      "title": "Not quite.",
+      "body": "That's not correct. Try again.",
+      "_imageAlignment": "right", 
+      "_graphic": {
+        "alt": "Incorrect icon",
+        "_src": "assets/incorrect.png"
+      }
+    }
+  },
+  "_tutor": {
+    "_type": "inline",
+    "_classes": ""
+  }

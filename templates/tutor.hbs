@@ -5,25 +5,59 @@
   <div class="tutor__content">
     <div class="tutor__content-inner">
 
-      {{#if title}}
-      <div class="tutor__title">
-        <div class="tutor__title-inner" role="heading" aria-level="{{a11y_aria_level _id '@component+1' _ariaLevel }}">
-          {{{compile title}}}
+      {{#if _graphic._src}}
+      {{#any (equals _imageAlignment 'left') (equals _imageAlignment 'top')}}
+      <div class="tutor__image-container{{#if _graphic.attribution}} has-attribution{{/if}}">
+        <img class="tutor__image" src="{{_graphic._src}}" 
+             {{#if _graphic.alt}}aria-label="{{{_graphic.alt}}}"{{else}}aria-hidden="true"{{/if}}>
+        {{#if _graphic.attribution}}
+        <div class="tutor__attribution">
+          <div class="tutor__attribution-inner">
+            {{{compile _graphic.attribution}}}
+          </div>
         </div>
+        {{/if}}
       </div>
-      {{else if altTitle}}
-      <div class="tutor__title aria-label">
-        <div class="tutor__title-inner" role="heading" aria-level="{{a11y_aria_level _id '@component+1' _ariaLevel }}">
-          {{{compile altTitle}}}
-        </div>
-      </div>
+      {{/any}}
       {{/if}}
 
-      <div class="tutor__body">
-        <div class="tutor__body-inner">
-          {{{compile body}}}
+      <div class="tutor__text">
+        {{#if title}}
+        <div class="tutor__title">
+          <div class="tutor__title-inner" role="heading" aria-level="{{a11y_aria_level _id '@component+1' _ariaLevel }}">
+            {{{compile title}}}
+          </div>
+        </div>
+        {{else if altTitle}}
+        <div class="tutor__title aria-label">
+          <div class="tutor__title-inner" role="heading" aria-level="{{a11y_aria_level _id '@component+1' _ariaLevel }}">
+            {{{compile altTitle}}}
+          </div>
+        </div>
+        {{/if}}
+
+        <div class="tutor__body">
+          <div class="tutor__body-inner">
+            {{{compile body}}}
+          </div>
         </div>
       </div>
+
+      {{#if _graphic._src}}
+      {{#any (equals _imageAlignment 'right') (equals _imageAlignment 'bottom')}}
+      <div class="tutor__image-container{{#if _graphic.attribution}} has-attribution{{/if}}">
+        <img class="tutor__image" src="{{_graphic._src}}" 
+             {{#if _graphic.alt}}aria-label="{{{_graphic.alt}}}"{{else}}aria-hidden="true"{{/if}}>
+        {{#if _graphic.attribution}}
+        <div class="tutor__attribution">
+          <div class="tutor__attribution-inner">
+            {{{compile _graphic.attribution}}}
+          </div>
+        </div>
+        {{/if}}
+      </div>
+      {{/any}}
+      {{/if}}
 
       {{#any (equals _type 'notify') (equals _type 'overlay')}}
       <button

@@ -20,6 +20,52 @@
     }
   }
 
+  // Graphics support
+  &__content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__image-container {
+    flex-shrink: 0;
+  }
+
+  &__text {
+    flex: 1;
+  }
+
+  &__attribution {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: @font-color;
+    opacity: 0.7;
+  }
+
+  // Graphics with alignment
+  &.has-image {
+    @media (min-width: @device-width-medium) {
+      &.align-image-left .tutor__content-inner,
+      &.align-image-right .tutor__content-inner {
+        flex-direction: row;
+        gap: 1rem;
+
+        .tutor__text {
+          width: 60%;
+        }
+
+        .tutor__image-container {
+          width: 40%;
+        }
+      }
+    }
+  }
+
   // overlay
   &-type-overlay {
     position: absolute;
