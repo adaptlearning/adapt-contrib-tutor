@@ -50,10 +50,12 @@
   // Graphics with alignment
   &.has-image {
     @media (min-width: @device-width-medium) {
-      &.align-image-left .tutor__content-inner,
-      &.align-image-right .tutor__content-inner {
-        flex-direction: row;
-        gap: 1rem;
+      &.align-image-left,
+      &.align-image-right {
+        .tutor__content-inner {
+          flex-direction: row;
+          gap: 1rem;
+        }
 
         .tutor__text {
           width: 60%;
