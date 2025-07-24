@@ -10,7 +10,7 @@ export default class TutorView extends Backbone.View {
       `tutor-type-${this.model.get('_type')}`,
       this.model.get('_classes')
     ];
-    
+
     // Add graphics-related classes
     const graphic = this.model.get('_graphic');
     if (graphic?._src) {
@@ -20,7 +20,7 @@ export default class TutorView extends Backbone.View {
         classes.push(`align-image-${imageAlignment}`);
       }
     }
-    
+
     return classes.filter(Boolean).join(' ');
   }
 

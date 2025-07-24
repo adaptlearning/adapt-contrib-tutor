@@ -9,7 +9,7 @@
       {{#any (equals _imageAlignment 'left') (equals _imageAlignment 'top')}}
       <div class="tutor__image-container{{#if _graphic.attribution}} has-attribution{{/if}}">
         <img class="tutor__image" src="{{_graphic._src}}" 
-             {{#if _graphic.alt}}aria-label="{{{_graphic.alt}}}"{{else}}aria-hidden="true"{{/if}}>
+          {{#if _graphic.alt}}aria-label="{{{_graphic.alt}}}"{{else}}aria-hidden="true"{{/if}}>
         {{#if _graphic.attribution}}
         <div class="tutor__attribution">
           <div class="tutor__attribution-inner">
@@ -47,7 +47,7 @@
       {{#any (equals _imageAlignment 'right') (equals _imageAlignment 'bottom')}}
       <div class="tutor__image-container{{#if _graphic.attribution}} has-attribution{{/if}}">
         <img class="tutor__image" src="{{_graphic._src}}" 
-             {{#if _graphic.alt}}aria-label="{{{_graphic.alt}}}"{{else}}aria-hidden="true"{{/if}}>
+          {{#if _graphic.alt}}aria-label="{{{_graphic.alt}}}"{{else}}aria-hidden="true"{{/if}}>
         {{#if _graphic.attribution}}
         <div class="tutor__attribution">
           <div class="tutor__attribution-inner">
