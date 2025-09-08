@@ -3,6 +3,7 @@
     "_type": "notify",
     "_classes": "",
     "_hasNotifyBottomButton": false,
+    "_autoScrollWhenInline": true,
     "_button": {
       "text": "{{_globals._extensions._tutor.hideFeedback}}",
       "ariaLabel": "{{_globals._extensions._tutor.hideFeedback}}"
@@ -15,6 +16,7 @@
     "_type": "notify",
     "_classes": "",
     "_hasNotifyBottomButton": false,
+    "_autoScrollWhenInline": true,
     "_button": {
       "text": "{{_globals._extensions._tutor.hideFeedback}}",
       "ariaLabel": "{{_globals._extensions._tutor.hideFeedback}}"
