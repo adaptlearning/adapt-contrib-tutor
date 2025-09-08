@@ -265,16 +265,16 @@ describe('Tutor - @@CURRENT_VERSION to @@RELEASE_VERSION', async () => {
     return true;
   });
 
-  checkContent('Tutor - check for course _tutor._autoScrollWhenInline', async () => {
-    const isValid = course._tutor._autoScrollWhenInline === true;
-    if (!isValid) throw new Error('Tutor - course _tutor._autoScrollWhenInline invalid');
-    return true;
-  });
-
   // Update components
   mutateContent('Tutor - add _tutor._autoScrollWhenInline to components', async (content) => {
     components = content.filter(({ _component }) => _component);
     components.forEach(component => { _.set(component._tutor, '_autoScrollWhenInline', true); });
+    return true;
+  });
+
+  checkContent('Tutor - check for course _tutor._autoScrollWhenInline', async () => {
+    const isValid = course._tutor._autoScrollWhenInline === true;
+    if (!isValid) throw new Error('Tutor - course _tutor._autoScrollWhenInline invalid');
     return true;
   });
 
