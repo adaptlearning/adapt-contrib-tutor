@@ -5,25 +5,31 @@
   <div class="tutor__content">
     <div class="tutor__content-inner">
 
-      {{#if title}}
-      <div class="tutor__title">
-        <div class="tutor__title-inner" role="heading" aria-level="{{a11y_aria_level _id '@component+1' _ariaLevel }}">
-          {{{compile title}}}
-        </div>
-      </div>
-      {{else if altTitle}}
-      <div class="tutor__title aria-label">
-        <div class="tutor__title-inner" role="heading" aria-level="{{a11y_aria_level _id '@component+1' _ariaLevel }}">
-          {{{compile altTitle}}}
-        </div>
-      </div>
-      {{/if}}
+      {{> tutorGraphic showGraphic=(all _graphic._src (any (equals _imageAlignment 'left') (equals _imageAlignment 'top')))}}
 
-      <div class="tutor__body">
-        <div class="tutor__body-inner">
-          {{{compile body}}}
+      <div class="tutor__text">
+        {{#if title}}
+        <div class="tutor__title">
+          <div class="tutor__title-inner" role="heading" aria-level="{{a11y_aria_level _id '@component+1' _ariaLevel }}">
+            {{{compile title}}}
+          </div>
+        </div>
+        {{else if altTitle}}
+        <div class="tutor__title aria-label">
+          <div class="tutor__title-inner" role="heading" aria-level="{{a11y_aria_level _id '@component+1' _ariaLevel }}">
+            {{{compile altTitle}}}
+          </div>
+        </div>
+        {{/if}}
+
+        <div class="tutor__body">
+          <div class="tutor__body-inner">
+            {{{compile body}}}
+          </div>
         </div>
       </div>
+
+      {{> tutorGraphic showGraphic=(all _graphic._src (any (equals _imageAlignment 'right') (equals _imageAlignment 'bottom')))}}
 
       {{#any (equals _type 'notify') (equals _type 'overlay')}}
       <button

@@ -5,11 +5,23 @@ import a11y from 'core/js/a11y';
 export default class TutorView extends Backbone.View {
 
   className() {
-    return [
+    const classes = [
       'tutor',
       `tutor-type-${this.model.get('_type')}`,
       this.model.get('_classes')
-    ].join(' ');
+    ];
+
+    // Add graphics-related classes
+    const graphic = this.model.get('_graphic');
+    if (graphic?._src) {
+      classes.push('has-image');
+      const imageAlignment = this.model.get('_imageAlignment');
+      if (imageAlignment) {
+        classes.push(`align-image-${imageAlignment}`);
+      }
+    }
+
+    return classes.filter(Boolean).join(' ');
   }
 
   events() {
