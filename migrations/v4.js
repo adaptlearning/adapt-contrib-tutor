@@ -254,10 +254,10 @@ describe('Tutor - v4.0.0 to v4.1.0', async () => {
   });
 });
 
-describe('Tutor - @@CURRENT_VERSION to @@RELEASE_VERSION', async () => {
+describe('Tutor - 4.8.0 to 4.9.0', async () => {
   let course, components;
 
-  whereFromPlugin('Tutor - from @@CURRENT_VERSION', { name: 'adapt-contrib-tutor', version: '<@@RELEASE_VERSION' });
+  whereFromPlugin('Tutor - from 4.8.0', { name: 'adapt-contrib-tutor', version: '<4.9.0' });
 
   mutateContent('Tutor - add course _tutor._autoScrollWhenInline', async () => {
     course = getCourse();
@@ -284,10 +284,10 @@ describe('Tutor - @@CURRENT_VERSION to @@RELEASE_VERSION', async () => {
     return true;
   });
 
-  updatePlugin('Tutor - update to @@RELEASE_VERSION', { name: 'adapt-contrib-tutor', version: '@@RELEASE_VERSION', framework: '>=5.22.8' });
+  updatePlugin('Tutor - update to 4.9.0', { name: 'adapt-contrib-tutor', version: '4.9.0', framework: '>=5.22.8' });
 
   testSuccessWhere('tutor with empty course', {
-    fromPlugins: [{ name: 'adapt-contrib-tutor', version: '@@CURRENT_VERSION' }],
+    fromPlugins: [{ name: 'adapt-contrib-tutor', version: '4.8.0' }],
     content: [
       { _id: 'c-100', _component: 'mcq', _tutor: {} },
       { _id: 'c-105', _component: 'mcq' },
@@ -296,7 +296,7 @@ describe('Tutor - @@CURRENT_VERSION to @@RELEASE_VERSION', async () => {
   });
 
   testSuccessWhere('tutor with existing course tutor config', {
-    fromPlugins: [{ name: 'adapt-contrib-tutor', version: '@@CURRENT_VERSION' }],
+    fromPlugins: [{ name: 'adapt-contrib-tutor', version: '4.8.0' }],
     content: [
       { _id: 'c-100', _component: 'mcq', _tutor: {} },
       { _type: 'course', _tutor: { _type: 'notify' }, _globals: { _extensions: { _tutor: {} } } }
@@ -304,6 +304,6 @@ describe('Tutor - @@CURRENT_VERSION to @@RELEASE_VERSION', async () => {
   });
 
   testStopWhere('incorrect version', {
-    fromPlugins: [{ name: 'adapt-contrib-tutor', version: '@@RELEASE_VERSION' }]
+    fromPlugins: [{ name: 'adapt-contrib-tutor', version: '4.9.0' }]
   });
 });
