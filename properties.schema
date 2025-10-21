@@ -51,6 +51,13 @@
                   "inputType": "Checkbox",
                   "help": "If disabled and of type notify, the default close icon will be displayed"
                 },
+                "_autoScrollWhenInline": {
+                  "type": "boolean",
+                  "default": true,
+                  "title": "Enable inline feedback auto scroll",
+                  "inputType": "Checkbox",
+                  "help": "If enabled, the page will scroll automatically to inline feedback after submitting the question. Tutor type must be set to `inline`."
+                },
                 "_button": {
                   "type": "object",
                   "title": "Close button",
@@ -119,6 +126,13 @@
                   "title": "Enable notify bottom button",
                   "inputType": "Checkbox",
                   "help": "If disabled and of type notify, the default close icon will be displayed"
+                },
+                "_autoScrollWhenInline": {
+                  "type": "boolean",
+                  "default": true,
+                  "title": "Enable inline feedback auto scroll",
+                  "inputType": "Checkbox",
+                  "help": "If enabled, the page will scroll automatically to inline feedback after submitting the question. Tutor type must be set to `inline`."
                 },
                 "_button": {
                   "type": "object",

@@ -1,6 +1,8 @@
 import Adapt from 'core/js/adapt';
 import BUTTON_STATE from 'core/js/enums/buttonStateEnum';
+import TUTOR_TYPE from './TUTOR_TYPE';
 import a11y from 'core/js/a11y';
+import router from 'core/js/router';
 
 export default class TutorView extends Backbone.View {
 
@@ -66,6 +68,13 @@ export default class TutorView extends Backbone.View {
   onTutorOpened(shouldManageFocus) {
     if (shouldManageFocus) {
       a11y.focus(this.$('.tutor__inner'), { defer: true, preventScroll: true });
+    }
+    const type = TUTOR_TYPE(this.model.get('_type').toUpperCase());
+    const shouldAutoScroll = this.model.get('_autoScrollWhenInline') ?? true;
+    if (type === TUTOR_TYPE.INLINE && shouldAutoScroll) {
+      const tutor = `.${this.model.get('_id')} .tutor__inner`;
+      if (!$(tutor).length) return;
+      router.navigateToElement(tutor, { duration: 400 });
     }
     Adapt.trigger('tutor:opened', this.parentView, this.model.toJSON());
   }

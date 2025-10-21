@@ -253,3 +253,57 @@ describe('Tutor - v4.0.0 to v4.1.0', async () => {
     fromPlugins: [{ name: 'adapt-contrib-tutor', version: '4.1.0' }]
   });
 });
+
+describe('Tutor - @@CURRENT_VERSION to @@RELEASE_VERSION', async () => {
+  let course, components;
+
+  whereFromPlugin('Tutor - from @@CURRENT_VERSION', { name: 'adapt-contrib-tutor', version: '<@@RELEASE_VERSION' });
+
+  mutateContent('Tutor - add course _tutor._autoScrollWhenInline', async () => {
+    course = getCourse();
+    _.set(course._tutor, '_autoScrollWhenInline', true);
+    return true;
+  });
+
+  // Update components
+  mutateContent('Tutor - add _tutor._autoScrollWhenInline to components', async (content) => {
+    components = content.filter(({ _component }) => _component);
+    components.forEach(component => { _.set(component._tutor, '_autoScrollWhenInline', true); });
+    return true;
+  });
+
+  checkContent('Tutor - check for course _tutor._autoScrollWhenInline', async () => {
+    const isValid = course._tutor._autoScrollWhenInline === true;
+    if (!isValid) throw new Error('Tutor - course _tutor._autoScrollWhenInline invalid');
+    return true;
+  });
+
+  checkContent('Tutor - check for _tutor._autoScrollWhenInline on components', async () => {
+    const isValid = components.every(({ _tutor }) => _tutor._autoScrollWhenInline === true);
+    if (!isValid) throw new Error('Tutor - component _tutor._autoScrollWhenInline invalid');
+    return true;
+  });
+
+  updatePlugin('Tutor - update to @@RELEASE_VERSION', { name: 'adapt-contrib-tutor', version: '@@RELEASE_VERSION', framework: '>=5.22.8' });
+
+  testSuccessWhere('tutor with empty course', {
+    fromPlugins: [{ name: 'adapt-contrib-tutor', version: '@@CURRENT_VERSION' }],
+    content: [
+      { _id: 'c-100', _component: 'mcq', _tutor: {} },
+      { _id: 'c-105', _component: 'mcq' },
+      { _type: 'course' }
+    ]
+  });
+
+  testSuccessWhere('tutor with existing course tutor config', {
+    fromPlugins: [{ name: 'adapt-contrib-tutor', version: '@@CURRENT_VERSION' }],
+    content: [
+      { _id: 'c-100', _component: 'mcq', _tutor: {} },
+      { _type: 'course', _tutor: { _type: 'notify' }, _globals: { _extensions: { _tutor: {} } } }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-tutor', version: '@@RELEASE_VERSION' }]
+  });
+});

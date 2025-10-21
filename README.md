@@ -27,6 +27,8 @@ As one of Adapt's _[core extensions](https://github.com/adaptlearning/adapt_fram
 
 **\_hasNotifyBottomButton** (boolean): Instead of a standard notify close button, the button will appear beneath the notify text. This option is only relevant when `_type` is set to `"notify"`. Default `false`.
 
+**\_autoScrollWhenInline** (boolean): When using the `"inline"` question feedback type and setting this value to `true`, the page will scroll automatically to the feedback. Default `true`.
+
 **\_button** (object): An object representing the `"notify"` and `"inline"` close button. It contains values for **text** and **ariaLabel**.
 
 > **text** (string): The text for notify and inline feedback buttons. Overlay will always show a cross. Default `"{{_globals._extensions._tutor.hideFeedback}}"`.
