@@ -1,7 +1,6 @@
 {{#if showGraphic}}
 <div class="tutor__image-container{{#if _graphic.attribution}} has-attribution{{/if}}">
-  <img class="tutor__image" src="{{_graphic._src}}" 
-    {{#if _graphic.alt}}aria-label="{{{_graphic.alt}}}"{{else}}aria-hidden="true"{{/if}}>
+  <img class="tutor__image" src="{{_graphic._src}}" alt="{{{_graphic.alt}}}">
   {{#if _graphic.attribution}}
   <div class="tutor__attribution">
     <div class="tutor__attribution-inner">
