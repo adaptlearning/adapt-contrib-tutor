@@ -261,14 +261,14 @@ describe('Tutor - 4.8.0 to 4.9.0', async () => {
 
   mutateContent('Tutor - add course _tutor._autoScrollWhenInline', async () => {
     course = getCourse();
-    _.set(course._tutor, '_autoScrollWhenInline', true);
+    _.set(course, '_tutor._autoScrollWhenInline', true);
     return true;
   });
 
   // Update components
   mutateContent('Tutor - add _tutor._autoScrollWhenInline to components', async (content) => {
     components = content.filter(({ _component }) => _component);
-    components.forEach(component => { _.set(component._tutor, '_autoScrollWhenInline', true); });
+    components.forEach(component => { _.set(component, '_tutor._autoScrollWhenInline', true); });
     return true;
   });
 
