@@ -39,7 +39,7 @@ class TutorView extends Backbone.View {
   }
 
   render() {
-    const Template = templates[TutorView.template.replace('.jsx', '')];
+    const Template = templates[this.constructor.template.replace('.jsx', '')];
     const props = {
       ...this.model.toJSON(),
       _globals: Adapt.course.get('_globals'),
