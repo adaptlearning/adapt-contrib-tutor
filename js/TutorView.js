@@ -1,10 +1,13 @@
 import Adapt from 'core/js/adapt';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { templates } from 'core/js/reactHelpers';
 import BUTTON_STATE from 'core/js/enums/buttonStateEnum';
 import TUTOR_TYPE from './TUTOR_TYPE';
 import a11y from 'core/js/a11y';
 import router from 'core/js/router';
 
-export default class TutorView extends Backbone.View {
+class TutorView extends Backbone.View {
 
   className() {
     const classes = [
@@ -26,11 +29,8 @@ export default class TutorView extends Backbone.View {
     return classes.filter(Boolean).join(' ');
   }
 
-  events() {
-    return { 'click .js-tutor-btn': 'onCloseClick' };
-  }
-
   initialize(options) {
+    _.bindAll(this, 'onCloseClick');
     this.parentView = options.parentView;
     this.buttonsView = this.parentView.buttonsView;
     this.listenTo(this.parentView, 'postRemove', this.onTutorClosed);
@@ -39,7 +39,13 @@ export default class TutorView extends Backbone.View {
   }
 
   render() {
-    this.$el.html(Handlebars.templates.tutor(this.model.toJSON()));
+    const Template = templates[this.constructor.template.replace('.jsx', '')];
+    const props = {
+      ...this.model.toJSON(),
+      _globals: Adapt.course.get('_globals'),
+      onCloseClick: this.onCloseClick
+    };
+    ReactDOM.render(<Template {...props} />, this.el);
     _.defer(this.postRender.bind(this));
   }
 
@@ -93,4 +99,13 @@ export default class TutorView extends Backbone.View {
     this.toggleFeedback({ shouldOpen: false, shouldManageFocus: false });
   }
 
+  remove() {
+    ReactDOM.unmountComponentAtNode(this.el);
+    super.remove();
+  }
+
 }
+
+TutorView.template = 'tutor.jsx';
+
+export default TutorView;
